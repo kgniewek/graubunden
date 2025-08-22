@@ -195,7 +195,7 @@ function wgs84ToCH1903(lat: number, lng: number) {
           >
             <ArrowLeft className="h-[22px] w-[22px] text-black " />
             {location && (
-              <span className="text-md font-normal text-black truncate max-w-[200px]">
+              <span className="text-md font-bold text-black truncate max-w-[200px]">
                 {location.short || location.location}
               </span>
             )}
