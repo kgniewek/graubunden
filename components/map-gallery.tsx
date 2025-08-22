@@ -269,7 +269,7 @@ export default function MapGallery({
   }
 
   return (
-    <div className={`relative ${className}`}>
+    <div className={`relative select-none ${className}`}>
      <MapContainer
   key={mapKey}
   center={[46.6, 9.8]}
