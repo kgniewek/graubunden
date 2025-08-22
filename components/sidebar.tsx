@@ -495,11 +495,12 @@ function Sidebar({
                   }`}
                 >
                   <div className="absolute inset-0 transition-transform duration-300 group-hover:scale-110">
-                    <img 
-                      src="https://kgniewek.pics/kgniewek.pics20220901b.webp"
-                      alt={style.name[language]}
-                      className="w-full h-full object-cover"
-                    />
+                   <img 
+  src={style.image}
+  alt={style.name[language]}
+  className="w-full h-full object-cover"
+/>
+
                   </div>
                 
                   <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors duration-200" />
