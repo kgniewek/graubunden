@@ -50,87 +50,85 @@ export function ClientLayout() {
     <>
       <div className="flex h-screen overflow-hidden flex-col">
         {/* Navigation - fully inside client layout */}
-        <nav className="sticky top-0 z-50 w-full border-b border-gray-200 dark:border-gray-800 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-          <div className="container flex h-12 max-w-screen-2xl items-center px-4">
-            <div className="mr-4 flex">
-              <a className="flex items-center space-x-[6px]" href="/">
-                <img
-  src="/logo-light-map.svg"
-  alt="Graubünden Gallery"
-  className="h-[30px] w-auto flex-shrink-0 dark:hidden"
-/>
-<img
-  src="/logo-dark-map.svg"
-  alt="Graubünden Gallery"
-  className="h-[30px] w-auto flex-shrink-0 hidden dark:inline-block"
-/>
-                <img
-  src="/logo-light-text.svg"
-  alt="Graubünden Gallery"
-  className="h-[26px] w-auto flex-shrink-0 dark:hidden"
-/>
-<img
-  src="/logo-dark-text.svg"
-  alt="Graubünden Gallery"
-  className="h-[26px] w-auto flex-shrink-0 hidden dark:inline-block"
-/>
-              </a>
-            </div>
+<nav className="sticky top-0 z-50 w-full border-b border-gray-200 dark:border-gray-800 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+  <div className="flex h-12 max-w-screen-2xl mx-auto items-center justify-between px-6">
+    {/* Left: Logo */}
+    <a className="flex items-center space-x-[6px]" href="/">
+      <img
+        src="/logo-light-map.svg"
+        alt="Graubünden Gallery"
+        className="h-[30px] w-auto flex-shrink-0 dark:hidden"
+      />
+      <img
+        src="/logo-dark-map.svg"
+        alt="Graubünden Gallery"
+        className="h-[30px] w-auto flex-shrink-0 hidden dark:inline-block"
+      />
+      <img
+        src="/logo-light-text.svg"
+        alt="Graubünden Gallery"
+        className="h-[26px] w-auto flex-shrink-0 dark:hidden"
+      />
+      <img
+        src="/logo-dark-text.svg"
+        alt="Graubünden Gallery"
+        className="h-[26px] w-auto flex-shrink-0 hidden dark:inline-block"
+      />
+    </a>
 
-            <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
-              <div className="w-full flex-1 md:w-auto md:flex-none" />
+    {/* Right: Language selector + Theme toggle */}
+    <div className="flex items-center space-x-3">
+      {/* Language Dropdown */}
+      <div className="relative group">
+        <Button variant="ghost" className="h-8 px-3 flex items-center space-x-2">
+          <img
+            src={currentLanguage.flag}
+            alt={currentLanguage.name}
+            className="w-[22px] h-auto rounded-sm object-contain"
+          />
+          <span className="text-sm font-medium">{currentLanguage.name}</span>
+          <ChevronDown className="h-4 w-4 -ml-1 transition-transform group-hover:rotate-180" />
+        </Button>
 
-              <div className="flex items-center space-x-2">
-                <div className="relative group">
-                  <Button variant="ghost" className="h-8 px-3 flex items-center space-x-2">
-                    <img 
-                      src={currentLanguage.flag} 
-                      alt={currentLanguage.name} 
-                      className="w-[22px] h-auto rounded-sm object-contain" 
-                    />
-                    <span className="text-sm font-medium">{currentLanguage.name}</span>
-                    <ChevronDown className="h-4 w-4 -ml-1 transition-transform group-hover:rotate-180" />
-                  </Button>
-
-                  <div className="absolute right-0 top-full mt-1 w-44 bg-background border border-border rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                    <div className="py-1">
-                      {languages.map(lang => (
-                        <button
-                          key={lang.code}
-                          onClick={() => setLanguage(lang.code as any)}
-                          className={`w-full flex items-center space-x-3 px-3 py-2 text-sm hover:bg-accent transition-colors ${
-                            language === lang.code ? 'bg-accent' : ''
-                          }`}
-                        >
-                          <img src={lang.flag} alt={lang.name} className="w-[22px] h-auto rounded-sm object-contain" />
-                          <span>{lang.name}</span>
-                        </button>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="h-8 px-2"
-                  onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
-                >
-                  <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-                  <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-                  <span className="sr-only">
-                    <T
-                      en="Toggle theme"
-                      de="Thema wechseln"
-                      it="Cambia tema"
-                      fr="Changer de thème"
-                    />
-                  </span>
-                </Button>
-              </div>
-            </div>
+        <div className="absolute right-0 top-full mt-1 w-44 bg-background border border-border rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+          <div className="py-1">
+            {languages.map(lang => (
+              <button
+                key={lang.code}
+                onClick={() => setLanguage(lang.code as any)}
+                className={`w-full flex items-center space-x-3 px-3 py-2 text-sm hover:bg-accent transition-colors ${
+                  language === lang.code ? 'bg-accent' : ''
+                }`}
+              >
+                <img src={lang.flag} alt={lang.name} className="w-[22px] h-auto rounded-sm object-contain" />
+                <span>{lang.name}</span>
+              </button>
+            ))}
           </div>
-        </nav>
+        </div>
+      </div>
+
+      {/* Theme Toggle */}
+      <Button
+        variant="ghost"
+        size="sm"
+        className="h-8 px-2"
+        onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+      >
+        <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+        <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+        <span className="sr-only">
+          <T
+            en="Toggle theme"
+            de="Thema wechseln"
+            it="Cambia tema"
+            fr="Changer de thème"
+          />
+        </span>
+      </Button>
+    </div>
+  </div>
+</nav>
 
         {/* Main content */}
         <div className="flex flex-1 overflow-hidden">
