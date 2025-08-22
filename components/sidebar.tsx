@@ -480,51 +480,48 @@ function Sidebar({
               </h3>
             </button>
           </div>
-{isMapStyleExpanded && (
-  <div className="grid grid-cols-3 gap-2">
-    {mapStyles.map((style) => (
-      <button
-        key={style.id}
-        onClick={() => handleMapStyleChange(style.id)}
-        className={`relative aspect-[3/2] rounded-md border-2 transition-all duration-200 overflow-hidden group ${
-          getActiveStyle() === style.id
-            ? 'border-primary'
-            : 'border-border hover:border-primary/50'
-        }`}
-      >
-        {/* Container with image and label split */}
-        <div className="absolute inset-0 flex flex-col">
-          {/* Image part - takes about 80% height */}
-          <div className="flex-[4] relative overflow-hidden">
-            <img
-              src="https://kgniewek.pics/kgniewek.pics20220901b.webp"
-              alt={style.name[language]}
-              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-            />
-            {/* Overlay on hover */}
-            <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors duration-200" />
-            {/* Check icon if active */}
-            {getActiveStyle() === style.id && (
-              <div className="absolute inset-0 flex items-center justify-center z-10">
-                <div className="bg-primary text-primary-foreground rounded-full p-0.5">
-                  <Check className="h-3 w-3" />
-                </div>
-              </div>
-            )}
-          </div>
 
-          {/* Label strip - fixed height */}
-          <div className="flex-[1] bg-white dark:bg-black text-black dark:text-white px-1 py-[3px] z-10 flex items-center justify-center">
-            <span className="text-xs font-medium text-center truncate leading-tight">
-              {style.name[language]}
-            </span>
-          </div>
+          {isMapStyleExpanded && (
+            <div className="grid grid-cols-3 gap-2">
+              {mapStyles.map((style) => (
+                <button
+                  key={style.id}
+                  onClick={() => handleMapStyleChange(style.id)}
+                  className={`relative aspect-[3/2] rounded-md border-2 transition-all duration-200 overflow-hidden group ${
+                    getActiveStyle() === style.id 
+                      ? 'border-primary' 
+                      : 'border-border hover:border-primary/50'
+                  }`}
+                >
+                  <div className="absolute inset-0 transition-transform duration-300 group-hover:scale-110">
+                    <img 
+                      src="https://kgniewek.pics/kgniewek.pics20220901b.webp"
+                      alt={style.name[language]}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                
+                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors duration-200" />
+                
+                  {getActiveStyle() === style.id && (
+                    <div className="absolute inset-0 flex items-center justify-center z-10">
+                      <div className="bg-primary text-primary-foreground rounded-full p-0.5">
+                        <Check className="h-3 w-3" />
+                      </div>
+                    </div>
+                  )}
+                
+                  <div className="absolute bottom-0 left-0 right-0 bg-white dark:bg-black text-black dark:text-white px-1 py-[3px] z-10">
+                    <span className="text-xs font-medium block text-center truncate leading-tight">
+                      {style.name[language]}
+                    </span>
+                  </div>
+                </button>
+              ))}
+            </div>
+          )}
         </div>
-      </button>
-    ))}
-  </div>
-)}
-
+      )}
     </div>
   );
 }
