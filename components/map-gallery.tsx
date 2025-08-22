@@ -59,6 +59,7 @@ export default function MapGallery({
   const [mapKey, setMapKey] = useState(0);
   const [visibleLocationIds, setVisibleLocationIds] = useState<Set<string>>(new Set());
   const mapRef = useRef<any>(null);
+  const [savedMapView, setSavedMapView] = useState<{center: [number, number], zoom: number} | null>(null);
   const { theme } = useTheme();
 
   // Filter locations based on Editor's Choice setting
@@ -187,6 +188,16 @@ export default function MapGallery({
   // Force map refresh when theme changes
   useEffect(() => {
     if (theme) {
+      // Save current map view before refresh
+      if (mapRef.current) {
+        const center = mapRef.current.getCenter();
+        const zoom = mapRef.current.getZoom();
+        setSavedMapView({
+          center: [center.lat, center.lng],
+          zoom: zoom
+        });
+      }
+      
       // Force re-render of map component
       setMapKey(prev => prev + 1);
       
@@ -205,6 +216,28 @@ export default function MapGallery({
       }, 100);
     }
   }, [theme]);
+
+  // Restore map view after re-render
+  const handleMapReadyWithRestore = React.useCallback((e: any) => {
+    const mapInstance = e.target;
+    if (!mapInstance) return;
+    
+    mapRef.current = mapInstance;
+    
+    // Restore saved view if available
+    if (savedMapView) {
+      mapInstance.setView(savedMapView.center, savedMapView.zoom);
+      setSavedMapView(null); // Clear saved view
+    }
+    
+    // Initial check for visible locations
+    setTimeout(() => updateVisibleLocations(), 100);
+    
+    // Listen to map events
+    mapInstance.on('moveend', updateVisibleLocations);
+    mapInstance.on('zoomend', updateVisibleLocations);
+    mapInstance.on('resize', updateVisibleLocations);
+  }, [updateVisibleLocations, savedMapView]);
 
   // Get tile layer URL based on selected map style
   const getTileLayerUrl = () => {
@@ -269,14 +302,14 @@ export default function MapGallery({
   }
 
   return (
-    <div className={`relative select-none ${className}`}>
+    <div className={`relative ${className}`}>
      <MapContainer
   key={mapKey}
-  center={[46.6, 9.8]}
-  zoom={9}
+  center={savedMapView?.center || [46.6, 9.8]}
+  zoom={savedMapView?.zoom || 9}
   style={{ height: '100%', width: '100%' }}
   className={`z-0 leaflet-container ${theme === 'dark' ? 'map-bg-dark' : 'map-bg-light'}`}
-       whenReady={handleMapReady}
+       whenReady={() => handleMapReadyWithRestore()}
 >
 
         <TileLayer
