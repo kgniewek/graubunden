@@ -1,5 +1,3 @@
-import { ClientLayout } from './client-layout';
-
 import dynamic from 'next/dynamic';
 
 // Dynamically import ClientLayout with no SSR
