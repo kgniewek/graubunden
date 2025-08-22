@@ -193,7 +193,7 @@ function wgs84ToCH1903(lat: number, lng: number) {
             onClick={onClose}
             className="absolute top-2 left-2 flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-200 "
           >
-            <ArrowLeft className="h-[18px] w-[18px] text-black " />
+            <ArrowLeft className="h-[22px] w-[22px] text-black " />
             {location && (
               <span className="text-md font-normal text-black truncate max-w-[200px]">
                 {location.short || location.location}
