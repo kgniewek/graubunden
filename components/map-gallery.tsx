@@ -144,7 +144,10 @@ export default function MapGallery({
 
   // Set up map event listeners when map is ready
   const handleMapReady = React.useCallback((e: any) => {
+    // Get the map instance from the event
     const mapInstance = e.target;
+    if (!mapInstance) return;
+    
     mapRef.current = mapInstance;
     
     // Initial check
