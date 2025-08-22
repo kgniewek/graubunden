@@ -87,68 +87,69 @@ function Sidebar({
     onDifficultyRangeChange?.([0, 4]);
   };
 
-  const mapStyles = [
-    {
-      id: 'light-simple',
-      name: {
-        en: 'Light Simple',
-        de: 'Hell Einfach',
-        it: 'Semplice Chiaro',
-        fr: 'Simple Clair'
-      },
-      preview: 'linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)'
+ const mapStyles = [
+  {
+    id: 'light-simple',
+    name: {
+      en: 'Light Simple',
+      de: 'Hell Einfach',
+      it: 'Semplice Chiaro',
+      fr: 'Simple Clair'
     },
-    {
-      id: 'dark-simple',
-      name: {
-        en: 'Dark Simple',
-        de: 'Dunkel Einfach',
-        it: 'Semplice Scuro',
-        fr: 'Simple Sombre'
-      },
-      preview: 'linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%)'
+    image: '/map-simple-light.webp'
+  },
+  {
+    id: 'dark-simple',
+    name: {
+      en: 'Dark Simple',
+      de: 'Dunkel Einfach',
+      it: 'Semplice Scuro',
+      fr: 'Simple Sombre'
     },
-    {
-      id: 'satellite',
-      name: {
-        en: 'Satellite',
-        de: 'Satellit',
-        it: 'Satellite',
-        fr: 'Satellite'
-      },
-      preview: 'linear-gradient(135deg, #2d5016 0%, #4a7c59 50%, #8fbc8f 100%)'
+    image: '/map-simple-dark.webp'
+  },
+  {
+    id: 'satellite',
+    name: {
+      en: 'Satellite',
+      de: 'Satellit',
+      it: 'Satellite',
+      fr: 'Satellite'
     },
-    {
-      id: 'terrain',
-      name: {
-        en: 'Terrain',
-        de: 'Gelände',
-        it: 'Terreno',
-        fr: 'Terrain'
-      },
-      preview: 'linear-gradient(135deg, #8b4513 0%, #daa520 50%, #228b22 100%)'
+    image: '/map-satelite.webp'
+  },
+  {
+    id: 'terrain',
+    name: {
+      en: 'Terrain',
+      de: 'Gelände',
+      it: 'Terreno',
+      fr: 'Terrain'
     },
-    {
-      id: 'street',
-      name: {
-        en: 'Street',
-        de: 'Straße',
-        it: 'Strada',
-        fr: 'Rue'
-      },
-      preview: 'linear-gradient(135deg, #f5f5f5 0%, #ffffff 50%, #e0e0e0 100%)'
+    image: '/map-terrain.webp'
+  },
+  {
+    id: 'street',
+    name: {
+      en: 'Street',
+      de: 'Straße',
+      it: 'Strada',
+      fr: 'Rue'
     },
-    {
-      id: 'swisstopo',
-      name: {
-        en: 'SwissTopo',
-        de: 'SwissTopo',
-        it: 'SwissTopo',
-        fr: 'SwissTopo'
-      },
-      preview: 'linear-gradient(135deg, #e8f4f8 0%, #d1e7dd 50%, #f8f9fa 100%)'
-    }
-  ];
+    image: '/map-street.webp'
+  },
+  {
+    id: 'swisstopo',
+    name: {
+      en: 'SwissTopo',
+      de: 'SwissTopo',
+      it: 'SwissTopo',
+      fr: 'SwissTopo'
+    },
+    image: '/map-swisstopo.webp'
+  }
+];
+
 
   const handleMapStyleChange = (styleId: string) => {
     if (styleId === 'light-simple') {
