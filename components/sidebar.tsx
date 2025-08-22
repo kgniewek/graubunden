@@ -492,17 +492,18 @@ function Sidebar({
             : 'border-border hover:border-primary/50'
         }`}
       >
-        {/* Image container (takes full width but leaves padding for label) */}
+        {/* Container with image and label split */}
         <div className="absolute inset-0 flex flex-col">
-          <div className="flex-1 relative">
+          {/* Image part - takes about 80% height */}
+          <div className="flex-[4] relative overflow-hidden">
             <img
               src="https://kgniewek.pics/kgniewek.pics20220901b.webp"
               alt={style.name[language]}
               className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
             />
-            {/* Hover dark overlay */}
+            {/* Overlay on hover */}
             <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors duration-200" />
-            {/* Check icon */}
+            {/* Check icon if active */}
             {getActiveStyle() === style.id && (
               <div className="absolute inset-0 flex items-center justify-center z-10">
                 <div className="bg-primary text-primary-foreground rounded-full p-0.5">
@@ -513,8 +514,8 @@ function Sidebar({
           </div>
 
           {/* Label strip - fixed height */}
-          <div className="h-6 bg-white dark:bg-black text-black dark:text-white px-1 py-[3px] z-10">
-            <span className="text-xs font-medium block text-center truncate leading-tight">
+          <div className="flex-[1] bg-white dark:bg-black text-black dark:text-white px-1 py-[3px] z-10 flex items-center justify-center">
+            <span className="text-xs font-medium text-center truncate leading-tight">
               {style.name[language]}
             </span>
           </div>
