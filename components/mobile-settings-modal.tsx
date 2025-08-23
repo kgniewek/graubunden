@@ -178,7 +178,7 @@ export default function MobileSettingsModal({
   en="Show only Editor's Choice locations"
   de="Nur Editor's Choice Standorte anzeigen"
   it="Mostra solo le località scelte dall'editore"
-  fr="Afficher uniquement les lieux choisis par l'éditeur"
+fr="Afficher seulement les choix de l'éditeur"
   />
               </span>
               <Switch
