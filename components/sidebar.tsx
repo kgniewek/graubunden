@@ -482,46 +482,53 @@ function Sidebar({
             </button>
           </div>
 
-          {isMapStyleExpanded && (
-            <div className="grid grid-cols-3 gap-2">
-              {mapStyles.map((style) => (
-                <button
-                  key={style.id}
-                  onClick={() => handleMapStyleChange(style.id)}
-                  className={`relative aspect-[3/2] rounded-md border-2 transition-all duration-200 overflow-hidden group ${
-                    getActiveStyle() === style.id 
-                      ? 'border-primary' 
-                      : 'border-border hover:border-primary/50'
-                  }`}
-                >
-                  <div className="absolute inset-0 transition-transform duration-300 group-hover:scale-110">
-                   <img 
-  src={style.image}
-  alt={style.name[language]}
-  className="w-full h-full object-cover"
-/>
+         {isMapStyleExpanded && (
+  <div className="grid grid-cols-3 gap-2">
+    {mapStyles.map((style) => {
+      const isActive = getActiveStyle() === style.id;
+      return (
+        <button
+          key={style.id}
+          onClick={() => handleMapStyleChange(style.id)}
+          className={`relative aspect-[3/2] rounded-md border-2 transition-all duration-200 overflow-hidden group ${
+            isActive
+              ? 'border-primary'
+              : 'border-border hover:border-primary/50'
+          }`}
+        >
+          <div className="absolute inset-0 transition-transform duration-300 group-hover:scale-110">
+            <img
+              src={style.image}
+              alt={style.name[language]}
+              className="w-full h-full object-cover"
+            />
+          </div>
 
-                  </div>
-                
-                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors duration-200" />
-                
-                  {getActiveStyle() === style.id && (
-                    <div className="absolute inset-0 flex items-center justify-center z-10">
-                      <div className="bg-primary text-primary-foreground rounded-full p-0.5">
-                        <Check className="h-3 w-3" />
-                      </div>
-                    </div>
-                  )}
-                
-                  <div className="absolute bottom-0 left-0 right-0 bg-white dark:bg-black text-black dark:text-white px-1 py-[3px] z-10">
-                    <span className="text-xs font-medium block text-center truncate leading-tight">
-                      {style.name[language]}
-                    </span>
-                  </div>
-                </button>
-              ))}
+          <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors duration-200" />
+
+          {isActive && (
+            <div className="absolute inset-0 flex items-center justify-center z-10">
+              <div className="bg-primary text-primary-foreground rounded-full p-0.5">
+                <Check className="h-3 w-3" />
+              </div>
             </div>
           )}
+
+          <div
+            className={`absolute bottom-0 left-0 right-0 px-1 py-[3px] z-10 text-xs font-medium text-center truncate leading-tight transition-all duration-200
+            ${isActive
+              ? 'bg-white text-black dark:bg-white dark:text-black'
+              : 'bg-white text-black dark:bg-black dark:text-white'
+            }`}
+          >
+            {style.name[language]}
+          </div>
+        </button>
+      );
+    })}
+  </div>
+)}
+
         </div>
       )}
     </div>
