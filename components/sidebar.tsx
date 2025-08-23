@@ -343,7 +343,12 @@ function Sidebar({
             >
               <ChevronDown className={`h-5 w-5 transition-transform ${isFiltersExpanded ? '' : '-rotate-90'}`} />
               <h3 className="font-bold text-sm">
-                <T en="Filters" de="Filter" it="Filtri" fr="Filtres" />
+  <T 
+    en="Location Filters" 
+    de="Standortfilter" 
+    it="Filtri località" 
+    fr="Filtres de localisation" 
+  />
               </h3>
             </button>
             {isFiltersExpanded && (
@@ -491,7 +496,12 @@ function Sidebar({
             >
               <ChevronDown className={`h-5 w-5 transition-transform ${isMapStyleExpanded ? '' : '-rotate-90'}`} />
               <h3 className="font-bold text-sm">
-                <T en="Map Style" de="Kartenstil" it="Stile mappa" fr="Style de carte" />
+  <T 
+    en="Map Source" 
+    de="Kartenquelle" 
+    it="Fonte della mappa" 
+    fr="Source de la carte" 
+  />           
               </h3>
             </button>
           </div>
