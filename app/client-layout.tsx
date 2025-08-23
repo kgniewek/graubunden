@@ -51,7 +51,7 @@ export function ClientLayout() {
       <div className="flex h-screen overflow-hidden flex-col">
         {/* Navigation - fully inside client layout */}
 <nav className="sticky top-0 z-50 w-full border-b border-gray-200 dark:border-gray-800 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-  <div className="flex h-12 max-w-screen-2xl mx-auto items-center justify-between px-6">
+  <div className="flex h-12 w-full items-center justify-between px-2">
     {/* Left: Logo */}
     <a className="flex items-center space-x-[6px]" href="/">
       <img
@@ -77,8 +77,7 @@ export function ClientLayout() {
     </a>
 
     {/* Right: Language selector + Theme toggle */}
-    <div className="flex items-center space-x-3">
-      {/* Language Dropdown */}
+    <div className="flex items-center space-x-2">
       <div className="relative group">
         <Button variant="ghost" className="h-8 px-3 flex items-center space-x-2">
           <img
@@ -108,27 +107,22 @@ export function ClientLayout() {
         </div>
       </div>
 
-      {/* Theme Toggle */}
       <Button
         variant="ghost"
         size="sm"
         className="h-8 px-2"
         onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
       >
-        <Sun className="h-5 w-5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-        <Moon className="absolute h-5 w-5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+        <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+        <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
         <span className="sr-only">
-          <T
-            en="Toggle theme"
-            de="Thema wechseln"
-            it="Cambia tema"
-            fr="Changer de thème"
-          />
+          <T en="Toggle theme" de="Thema wechseln" it="Cambia tema" fr="Changer de thème" />
         </span>
       </Button>
     </div>
   </div>
 </nav>
+
 
         {/* Main content */}
         <div className="flex flex-1 overflow-hidden">
