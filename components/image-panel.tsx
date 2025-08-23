@@ -160,7 +160,7 @@ function wgs84ToCH1903(lat: number, lng: number) {
 
   return (
     <div className={cn(
-      "fixed top-[49px] left-0 h-[calc(100vh-49px)] w-[400px] bg-background border-r z-50",
+      "fixed top-[56px] sm:top-[49px] left-0 h-[calc(100vh-49px)] w-[400px] bg-background border-r z-50",
       "transform transition-transform duration-300 ease-in-out",
       "flex flex-col",
       isOpen ? "translate-x-0" : "-translate-x-full"
