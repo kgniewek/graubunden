@@ -241,10 +241,10 @@ function wgs84ToCH1903(lat: number, lng: number) {
           {location && (
 <button
   onClick={onFullscreenOpen}
-  className="absolute bottom-2 left-2 flex items-center space-x-[6px] py-[5px] pl-[8px] pr-[8px] text-white font-semibold rounded-full
-             bg-transparent hover:bg-muted/70 transition-all duration-200 opacity-80 hover:opacity-100 group"
+  className="absolute bottom-2 left-2 flex items-center space-x-[6px] py-[5px] pl-[10px] pr-[8px] text-white font-semibold rounded-full
+             bg-transparent hover:bg-muted/60 transition-all duration-200 opacity-80 hover:opacity-100 group"
 >
-  <Maximize2 className="h-5 w-5 text-sm opacity-80 group-hover:opacity-100 transition-opacity duration-200" />
+  <Maximize2 className="h-5 w-5 text-sm  group-hover:opacity-100 transition-opacity duration-200" />
   <span className="text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-200">
     <T
       en="View"
