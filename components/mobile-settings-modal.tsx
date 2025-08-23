@@ -92,7 +92,7 @@ export default function MobileSettingsModal({
         className="relative bg-background rounded-xl shadow-lg w-full max-w-[95%] max-h-[90%] overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
-  <div className="flex items-center justify-between p-5">
+  <div className="flex items-center justify-between pt-4 py-5 pb-4">
     <h2 className="font-bold text-2xl">
       <T
         en="Preferences"
