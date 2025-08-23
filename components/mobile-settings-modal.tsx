@@ -2,11 +2,10 @@
 
 import React from 'react';
 import { X, Check } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { RangeSlider } from '@/components/ui/range-slider';
 import { Switch } from '@/components/ui/switch';
-import { Separator } from '@/components/ui/separator';
 import { T, useLocale } from '@/app/locale-context';
+import { useTheme } from 'next-themes';
 
 interface MobileSettingsModalProps {
   isOpen: boolean;
@@ -42,14 +41,15 @@ export default function MobileSettingsModal({
   onDifficultyRangeChange,
 }: MobileSettingsModalProps) {
   const { language } = useLocale();
+  const { theme, setTheme } = useTheme();
 
   const mapStyles = [
     { id: 'light-simple', name: { en: 'Light Simple', de: 'Hell Einfach', it: 'Semplice Chiaro', fr: 'Simple Clair' }, image: '/map-simple-light.webp' },
-    { id: 'dark-simple', name: { en: 'Dark Simple', de: 'Dunkel Einfach', it: 'Semplice Scuro', fr: 'Simple Sombre' }, image: '/map-simple-dark.webp' },
-    { id: 'satellite', name: { en: 'Satellite', de: 'Satellit', it: 'Satellite', fr: 'Satellite' }, image: '/map-satelite.webp' },
-    { id: 'terrain', name: { en: 'Terrain', de: 'Gelände', it: 'Terreno', fr: 'Terrain' }, image: '/map-terrain.webp' },
-    { id: 'street', name: { en: 'Street', de: 'Straße', it: 'Strada', fr: 'Rue' }, image: '/map-street.webp' },
-    { id: 'swisstopo', name: { en: 'SwissTopo', de: 'SwissTopo', it: 'SwissTopo', fr: 'SwissTopo' }, image: '/map-swisstopo.webp' },
+    { id: 'dark-simple',  name: { en: 'Dark Simple',  de: 'Dunkel Einfach', it: 'Semplice Scuro', fr: 'Simple Sombre' }, image: '/map-simple-dark.webp' },
+    { id: 'satellite',    name: { en: 'Satellite',    de: 'Satellit',       it: 'Satellite',      fr: 'Satellite'     }, image: '/map-satelite.webp' },
+    { id: 'terrain',      name: { en: 'Terrain',      de: 'Gelände',        it: 'Terreno',        fr: 'Terrain'       }, image: '/map-terrain.webp' },
+    { id: 'street',       name: { en: 'Street',       de: 'Straße',         it: 'Strada',         fr: 'Rue'           }, image: '/map-street.webp' },
+    { id: 'swisstopo',    name: { en: 'SwissTopo',    de: 'SwissTopo',      it: 'SwissTopo',      fr: 'SwissTopo'     }, image: '/map-swisstopo.webp' },
   ];
 
   const difficultyLabels = {
@@ -58,107 +58,192 @@ export default function MobileSettingsModal({
     demanding_mountain_hiking: { en: 'Demanding mountain hiking', de: 'Anspruchsvolles Bergwandern', it: 'Escursionismo impegnativo', fr: 'Randonnée exigeante' },
     alpine_hiking: { en: 'Alpine hiking', de: 'Alpine Wanderung', it: 'Escursionismo alpino', fr: 'Randonnée alpine' },
     difficult_alpine_hiking: { en: 'Difficult alpine hiking', de: 'Schwierige alpine Wanderung', it: 'Escursionismo difficile', fr: 'Randonnée difficile' },
+  } as const;
+
+  const difficultyKeys = ['hiking', 'mountain_hiking', 'demanding_mountain_hiking', 'alpine_hiking', 'difficult_alpine_hiking'] as const;
+
+  const getActiveStyle = () => {
+    if (selectedMapStyle === 'simple') {
+      return theme === 'dark' ? 'dark-simple' : 'light-simple';
+    }
+    return selectedMapStyle;
   };
 
-  const difficultyKeys = ['hiking', 'mountain_hiking', 'demanding_mountain_hiking', 'alpine_hiking', 'difficult_alpine_hiking'];
+  const handleMapStyleChange = (styleId: string) => {
+    if (styleId === 'light-simple') {
+      setTheme('light');
+      onMapStyleChange('simple');
+    } else if (styleId === 'dark-simple') {
+      setTheme('dark');
+      onMapStyleChange('simple');
+    } else {
+      onMapStyleChange(styleId);
+    }
+  };
+
+  if (!isOpen) return null;
 
   return (
-    <AnimatePresence>
-      {isOpen && (
-        <motion.div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-3"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.2 }}
-          onClick={onClose}
-        >
-          <motion.div
-            className="bg-background rounded-lg shadow-lg w-full max-w-[95%] max-h-[90%] overflow-y-auto relative p-4"
-            initial={{ opacity: 0, scale: 0.9, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.9, y: 20 }}
-            transition={{ duration: 0.25 }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Close Button */}
-            <button className="absolute top-3 right-3" onClick={onClose}>
-              <X className="h-6 w-6" />
-            </button>
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-3"
+      onClick={onClose}
+    >
+      <div
+        className="relative bg-background rounded-lg shadow-lg w-full max-w-[95%] max-h-[90%] overflow-y-auto p-4"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Close Button */}
+        <button className="absolute top-3 right-3" onClick={onClose} aria-label="Close">
+          <X className="h-6 w-6" />
+        </button>
 
-            {/* Filters */}
-            <div className="space-y-4 mt-2">
-              <h3 className="font-bold text-lg mb-2">
-                <T en="Filters" de="Filter" it="Filtri" fr="Filtres" />
-              </h3>
+        {/* Filters */}
+        <div className="mt-2 space-y-4">
+          <h3 className="font-bold text-lg">
+            <T en="Filters" de="Filter" it="Filtri" fr="Filtres" />
+          </h3>
 
-              {/* Height Range */}
-              <div>
-                <label className="text-sm font-medium"><T en="Height" de="Höhe" it="Altezza" fr="Hauteur" /></label>
-                <RangeSlider min={100} max={4000} step={50} value={heightRange} onValueChange={onHeightRangeChange} minGap={200} />
-                <div className="flex justify-between text-xs mt-1">
-                  <span>{heightRange[0]}m</span><span>{heightRange[1]}m</span>
-                </div>
-              </div>
-
-              {/* Difficulty */}
-              <div>
-                <label className="text-sm font-medium"><T en="Difficulty" de="Schwierigkeit" it="Difficoltà" fr="Difficulté" /></label>
-                <RangeSlider min={0} max={4} step={1} value={difficultyRange} onValueChange={onDifficultyRangeChange} />
-                <div className="flex justify-between text-xs mt-1">
-                  <span>{difficultyLabels[difficultyKeys[difficultyRange[0]]][language]}</span>
-                  <span>{difficultyLabels[difficultyKeys[difficultyRange[1]]][language]}</span>
-                </div>
-              </div>
-
-              {/* Switches */}
-              <div className="space-y-2">
-                <div className="flex justify-between">
-                  <span className="text-sm"><T en="Show only Editor's Choice" de="Nur Editor's Choice" it="Solo Editor's Choice" fr="Seulement choix de l'éditeur" /></span>
-                  <Switch checked={showOnlyEditorsChoice} onCheckedChange={onEditorsChoiceChange} />
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-sm">Show only Switzerland</span>
-                  <Switch checked={showOnlySwitzerland} onCheckedChange={onSwitzerlandChange} />
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-sm">Show only Graubünden</span>
-                  <Switch checked={showOnlyGraubunden} onCheckedChange={onGraubundenChange} />
-                </div>
+          {/* Height Range (label left, slider right) */}
+          <div className="flex items-start gap-4">
+            <label className="text-xs font-medium w-16">
+              <T en="Height" de="Höhe" it="Altezza" fr="Hauteur" />
+            </label>
+            <div className="flex-1">
+              <RangeSlider
+                min={100}
+                max={4000}
+                step={50}
+                value={heightRange}
+                onValueChange={(value: [number, number]) => {
+                  const [min, max] = value;
+                  if (max - min >= 200) onHeightRangeChange(value);
+                }}
+                minGap={200}
+                className="w-full"
+              />
+              <div className="flex justify-between text-[10px] text-muted-foreground mt-[3px]">
+                <span>{heightRange[0]}m</span>
+                <span>{heightRange[1]}m</span>
               </div>
             </div>
+          </div>
 
-            {/* Separator */}
-            <Separator className="my-4" />
+          {/* Difficulty (label left, slider right) */}
+          <div className="flex items-start gap-4">
+            <label className="text-xs font-medium w-16">
+              <T en="Difficulty" de="Schwierigkeit" it="Difficoltà" fr="Difficulté" />
+            </label>
+            <div className="flex-1">
+              <RangeSlider
+                min={0}
+                max={4}
+                step={1}
+                value={difficultyRange}
+                onValueChange={(value: [number, number]) => {
+                  onDifficultyRangeChange(value);
+                }}
+                className="w-full"
+              />
+              <div className="flex justify-between text-[10px] text-muted-foreground mt-[3px]">
+                <span>{difficultyLabels[difficultyKeys[difficultyRange[0]]][language]}</span>
+                <span>{difficultyLabels[difficultyKeys[difficultyRange[1]]][language]}</span>
+              </div>
+            </div>
+          </div>
 
-            {/* Map Styles */}
-            <div>
-              <h3 className="font-bold text-lg mb-3"><T en="Map Style" de="Kartenstil" it="Stile mappa" fr="Style de carte" /></h3>
-              <div className="grid grid-cols-3 gap-2">
-                {mapStyles.map((style) => (
-                  <button
-                    key={style.id}
-                    onClick={() => onMapStyleChange(style.id)}
-                    className={`relative aspect-[3/2] rounded-md border-2 overflow-hidden ${selectedMapStyle === style.id ? 'border-primary' : 'border-border'}`}
-                  >
-                    <img src={style.image} alt={style.name[language]} className="w-full h-full object-cover" />
-                    <div className="absolute bottom-0 w-full bg-black/50 text-white text-xs text-center py-1">
-                      {style.name[language]}
-                    </div>
-                    {selectedMapStyle === style.id && (
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="bg-primary text-primary-foreground rounded-full p-1">
-                          <Check className="h-4 w-4" />
+          {/* Switches (extra spacing) */}
+          <div className="space-y-4 pt-1">
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-medium">
+                <T
+                  en="Show only Editor's Choice"
+                  de="Nur Editor's Choice"
+                  it="Solo Editor's Choice"
+                  fr="Seulement choix de l'éditeur"
+                />
+              </span>
+              <Switch
+                className="scale-90"
+                checked={showOnlyEditorsChoice}
+                onCheckedChange={onEditorsChoiceChange}
+              />
+            </div>
+
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-medium">Show only Switzerland</span>
+              <Switch
+                className="scale-90"
+                checked={showOnlySwitzerland}
+                onCheckedChange={onSwitzerlandChange}
+              />
+            </div>
+
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-medium">Show only Graubünden</span>
+              <Switch
+                className="scale-90"
+                checked={showOnlyGraubunden}
+                onCheckedChange={onGraubundenChange}
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Full-width 1px separator */}
+        <div className="w-full h-px bg-border my-4" />
+
+        {/* Map Styles (styled like sidebar) */}
+        <div className="space-y-3">
+          <h3 className="font-bold text-lg">
+            <T en="Map Style" de="Kartenstil" it="Stile mappa" fr="Style de carte" />
+          </h3>
+
+          <div className="grid grid-cols-3 gap-2">
+            {mapStyles.map((style) => {
+              const isActive = getActiveStyle() === style.id;
+              return (
+                <button
+                  key={style.id}
+                  onClick={() => handleMapStyleChange(style.id)}
+                  className={`relative aspect-[3/2] rounded-md border-2 overflow-hidden ${
+                    isActive ? 'border-primary' : 'border-border'
+                  }`}
+                >
+                  {/* Image area */}
+                  <div className="absolute top-0 left-0 right-0 bottom-[20px]">
+                    <img
+                      src={style.image}
+                      alt={style.name[language]}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-black/20" />
+
+                    {/* Bigger centered check on active */}
+                    {isActive && (
+                      <div className="absolute inset-0 flex items-center justify-center z-10">
+                        <div className="bg-primary text-primary-foreground rounded-full p-1.5">
+                          <Check className="h-5 w-5" />
                         </div>
                       </div>
                     )}
-                  </button>
-                ))}
-              </div>
-            </div>
-          </motion.div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+                  </div>
+
+                  {/* Bottom label with bg like original */}
+                  <div
+                    className={`absolute bottom-0 left-0 right-0 px-1 py-[3px] z-10 text-xs font-medium text-center truncate leading-tight
+                      ${isActive
+                        ? 'bg-black text-white dark:bg-white dark:text-black'
+                        : 'bg-white/80 text-black dark:bg-black dark:text-white'
+                      }`}
+                  >
+                    {style.name[language]}
+                  </div>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
