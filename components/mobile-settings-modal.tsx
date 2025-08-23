@@ -174,12 +174,12 @@ export default function MobileSettingsModal({
           <div className="space-y-[14px] pt-2">
             <div className="flex items-center justify-between">
               <span className="text-md font-medium">
- <T
-                      en="Show only Editor's Choice locations"
-                      de="Nur Editor's Choice Standorte anzeigen"
-                      it="Mostra solo le località scelte dall'editore"
-                      fr="Afficher uniquement les emplacements du choix de l'éditeur"
-                    />
+<T
+  en="Show only Editor's Choice locations"
+  de="Nur Editor's Choice Standorte anzeigen"
+  it="Mostra solo le località scelte dall'editore"
+  fr="Afficher uniquement les lieux choisis par l'éditeur"
+  />
               </span>
               <Switch
                 className=""
@@ -190,12 +190,12 @@ export default function MobileSettingsModal({
 
             <div className="flex items-center justify-between">
               <span className="text-md font-medium">
-               <T
-        en="Show locations only within Switzerland"
-        de="Nur Standorte innerhalb der Schweiz anzeigen"
-        it="Mostra solo località in Svizzera"
-        fr="Afficher uniquement les emplacements en Suisse"
-      />  
+<T
+  en="Show locations only within Switzerland"
+  de="Nur Standorte innerhalb der Schweiz anzeigen"
+  it="Mostra solo località in Svizzera"
+  fr="Afficher uniquement les lieux en Suisse"
+/>
               </span>
               <Switch
                 className=""
@@ -210,7 +210,7 @@ export default function MobileSettingsModal({
         en="Show locations only within Graubünden"
         de="Nur Standorte innerhalb Graubündens anzeigen"
         it="Mostra solo località nei Grigioni"
-        fr="Afficher uniquement les emplacements dans les Grisons"
+  fr="Afficher uniquement les lieux dans les Grisons"
       />  
               </span>
               <Switch
