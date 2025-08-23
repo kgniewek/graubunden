@@ -85,14 +85,14 @@ export default function MobileSettingsModal({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-3"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-4"
       onClick={onClose}
     >
       <div
-        className="relative bg-background rounded-lg shadow-lg w-full max-w-[95%] max-h-[90%] overflow-y-auto"
+        className="relative bg-background rounded-xl shadow-lg w-full max-w-[95%] max-h-[90%] overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
-  <div className="flex items-center justify-between p-4">
+  <div className="flex items-center justify-between p-5">
     <h2 className="font-bold text-2xl">
       <T
         en="Preferences"
@@ -111,7 +111,7 @@ export default function MobileSettingsModal({
   </div>
 
         {/* Filters */}
-        <div className=" space-y-4 p-4">
+        <div className=" space-y-5 p-5">
           <h3 className="font-bold text-lg">
             <T en="Filters" de="Filter" it="Filtri" fr="Filtres" />
           </h3>
@@ -134,7 +134,7 @@ export default function MobileSettingsModal({
                 minGap={200}
                 className="w-full"
               />
-              <div className="flex justify-between text-[10px] text-muted-foreground mt-[3px]">
+              <div className="flex justify-between text-[12px] text-muted-foreground mt-[5px]">
                 <span>{heightRange[0]}m</span>
                 <span>{heightRange[1]}m</span>
               </div>
@@ -157,7 +157,7 @@ export default function MobileSettingsModal({
                 }}
                 className="w-full"
               />
-              <div className="flex justify-between text-[10px] text-muted-foreground mt-[3px]">
+              <div className="flex justify-between text-[12px] text-muted-foreground mt-[5px]">
                 <span>{difficultyLabels[difficultyKeys[difficultyRange[0]]][language]}</span>
                 <span>{difficultyLabels[difficultyKeys[difficultyRange[1]]][language]}</span>
               </div>
@@ -165,7 +165,7 @@ export default function MobileSettingsModal({
           </div>
 
           {/* Switches (extra spacing) */}
-          <div className="space-y-4 pt-1">
+          <div className="space-y-[14px] pt-2">
             <div className="flex items-center justify-between">
               <span className="text-md font-medium">
  <T
@@ -220,12 +220,12 @@ export default function MobileSettingsModal({
         <div className="w-full h-[1px] bg-border my-4" />
 
         {/* Map Styles (styled like sidebar) */}
-        <div className="space-y-3 p-4">
+        <div className="space-y-3 p-5">
           <h3 className="font-bold text-lg">
             <T en="Map Style" de="Kartenstil" it="Stile mappa" fr="Style de carte" />
           </h3>
 
-          <div className="grid grid-cols-3 gap-2">
+          <div className="grid grid-cols-3 gap-4">
             {mapStyles.map((style) => {
               const isActive = getActiveStyle() === style.id;
               return (
