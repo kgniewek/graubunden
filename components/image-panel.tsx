@@ -444,11 +444,19 @@ export function FullscreenModal({
       className="fixed inset-0 bg-black/80 z-[9999] flex items-center justify-center"
       onClick={onClose}
     >
-      {/* Close button above image on right */}
-      <div className="absolute top-4 right-6 flex items-center space-x-2 z-[10000]">
+      <div className="relative inline-block">
+        {/* Fullscreen Image */}
+        <img
+          src={imageSrc}
+          alt={imageAlt}
+          className="max-w-[90vw] max-h-[90vh] object-contain"
+          onClick={(e) => e.stopPropagation()}
+        />
+
+        {/* Close button above image on the right */}
         <button
           onClick={onClose}
-          className="flex items-center space-x-2 px-3 py-1 bg-black/60 hover:bg-black/80 text-white rounded-full transition-all"
+          className="absolute -top-3 right-2 flex items-center space-x-1 px-2 py-1 bg-black/60 hover:bg-black/80 text-white rounded-full transition-all z-10"
         >
           <X className="h-5 w-5" />
           <span className="text-sm">
@@ -461,14 +469,6 @@ export function FullscreenModal({
           </span>
         </button>
       </div>
-
-      {/* Fullscreen Image */}
-      <img
-        src={imageSrc}
-        alt={imageAlt}
-        className="max-w-[90vw] max-h-[90vh] object-contain"
-        onClick={(e) => e.stopPropagation()}
-      />
     </div>
   );
 }
