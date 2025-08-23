@@ -53,7 +53,7 @@ export function ClientLayout() {
       <div className="flex h-screen overflow-hidden flex-col">
         {/* Navigation - fully inside client layout */}
 <nav className="sticky top-0 z-50 w-full border-b border-gray-200 dark:border-gray-800 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-<div className="flex h-12 w-full items-center justify-between px-2 sm:px-6">
+<div className="flex h-16 sm:h-12 w-full items-center justify-between px-2 sm:px-6">
     {/* Left: Logo */}
     <a className="flex items-center space-x-[6px]" href="/">
       <img
@@ -79,7 +79,7 @@ export function ClientLayout() {
     </a>
 
     {/* Right: Language selector + Theme toggle */}
-    <div className="flex items-center space-x-3">
+    <div className="flex items-center space-x-1">
       <div className="relative group">
         <Button variant="ghost" className="h-8 px-3 flex items-center space-x-2">
           <img
