@@ -189,7 +189,6 @@ function wgs84ToCH1903(lat: number, lng: number) {
           )}
           
 {/* Light mode button */}
-{/* Light mode button */}
 <button
   onClick={onClose}
   className="absolute top-3 left-3 dark:hidden flex items-center space-x-1 pl-[8px] pr-[16px] py-[3px] rounded-2xl text-black"
@@ -230,6 +229,7 @@ function wgs84ToCH1903(lat: number, lng: number) {
     </span>
   )}
 </button>
+
 
 {/* Dark mode button */}
 <button
