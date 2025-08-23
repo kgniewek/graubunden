@@ -189,17 +189,26 @@ function wgs84ToCH1903(lat: number, lng: number) {
           )}
           
           {/* Back Button with Short Text - Top Left Overlay */}
-          <button
-            onClick={onClose}
-            className="absolute top-2 left-2 flex items-center space-x-2 px-3 py-2 rounded-lg transition-all duration-200 "
-          >
-            <ArrowLeft className="h-[22px] w-[22px] text-black " />
-            {location && (
-              <span className="text-[17px] font-medium text-black truncate max-w-[200px]">
-                {location.short || location.location}
-              </span>
-            )}
-          </button>
+       <button
+  onClick={onClose}
+  className="absolute top-2 left-2 flex items-center space-x-2 px-3 py-2 rounded-2xl transition-all duration-200"
+  style={{
+    background: "rgba(255, 255, 255, 0.09)",
+    borderRadius: "16px",
+    boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
+    backdropFilter: "blur(3.8px)",
+    WebkitBackdropFilter: "blur(3.8px)",
+    border: "1px solid rgba(255, 255, 255, 1)"
+  }}
+>
+  <ArrowLeft className="h-[22px] w-[22px] text-black" />
+  {location && (
+    <span className="text-[17px] font-medium text-black truncate max-w-[200px]">
+      {location.short || location.location}
+    </span>
+  )}
+</button>
+
           
           {/* Fullscreen Icon */}
           {location && (
