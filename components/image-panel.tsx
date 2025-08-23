@@ -456,7 +456,7 @@ export function FullscreenModal({
 <button
   onClick={onClose}
   className="absolute -top-12 right-2 flex items-center space-x-2 pl-[14px] pr-[14px] py-[6px]  text-white font-semibold rounded-full transition-all
-             bg-transparent hover:bg-muted"
+             bg-transparent hover:bg-muted/20"
 >
   <span className="text-md">
     <T 
