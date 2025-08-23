@@ -111,7 +111,7 @@ export default function MobileSettingsModal({
   </div>
 
         {/* Filters */}
-        <div className=" space-y-5 p-5">
+        <div className=" space-y-5 pb-5 pl-5 pr-5 ">
 <h3 className="font-bold text-lg">
   <T 
     en="Location Filters" 
@@ -223,7 +223,7 @@ export default function MobileSettingsModal({
         </div>
 
         {/* Full-width 1px separator */}
-        <div className="w-full h-[1px] bg-border my-4" />
+        <div className="w-full h-[1px] bg-border mt-1" />
 
         {/* Map Styles (styled like sidebar) */}
         <div className="space-y-3 p-5">
