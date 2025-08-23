@@ -85,7 +85,7 @@ export function ClientLayout() {
           <img
             src={currentLanguage.flag}
             alt={currentLanguage.name}
-            className="w-[22px] h-auto rounded-sm object-contain"
+            className="w-[26px] h-auto rounded-sm object-contain"
           />
           <span className="text-sm font-medium">{currentLanguage.name}</span>
   <ChevronDown className="hidden sm:block h-4 w-4 -ml-1 transition-transform group-hover:rotate-180" />
@@ -115,8 +115,8 @@ export function ClientLayout() {
         className="h-8 px-2"
         onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
       >
-        <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-        <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+        <Sun className="h-[26px] w-[26px] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+        <Moon className="absolute h-[26px] w-[26px] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
         <span className="sr-only">
           <T en="Toggle theme" de="Thema wechseln" it="Cambia tema" fr="Changer de thème" />
         </span>
@@ -127,7 +127,7 @@ export function ClientLayout() {
                 className="h-8 px-2 md:hidden"
                 onClick={() => setIsMobileSettingsOpen(true)}
               >
-                <Settings className="h-5 w-5" />
+                <Settings className="h-[26px] w-[26px]" />
               </Button>
     </div>
   </div>
