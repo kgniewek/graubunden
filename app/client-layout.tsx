@@ -9,6 +9,7 @@ import type { Location } from '@/types/location';
 import { useTheme } from 'next-themes';
 import { useLocale, T } from '@/app/locale-context';
 import { Button } from '@/components/ui/button';
+import MobileSettingsModal from '@/components/mobile-settings-modal';
 
 export function ClientLayout() {
   const [selectedLocation, setSelectedLocation] = useState<Location | null>(null);
@@ -22,6 +23,7 @@ export function ClientLayout() {
   const [heightRange, setHeightRange] = useState<[number, number]>([100, 4000]);
   const [visibleLocations, setVisibleLocations] = useState<Location[]>([]);
   const [hoveredLocation, setHoveredLocation] = useState<Location | null>(null);
+  const [isMobileSettingsOpen, setIsMobileSettingsOpen] = useState(false);
 
   const { theme, setTheme } = useTheme();
   const { language, setLanguage } = useLocale();
@@ -119,6 +121,14 @@ export function ClientLayout() {
           <T en="Toggle theme" de="Thema wechseln" it="Cambia tema" fr="Changer de thème" />
         </span>
       </Button>
+      <Button
+                variant="ghost"
+                size="sm"
+                className="h-8 px-2 md:hidden"
+                onClick={() => setIsMobileSettingsOpen(true)}
+              >
+                <Settings className="h-5 w-5" />
+              </Button>
     </div>
   </div>
 </nav>
@@ -173,6 +183,35 @@ export function ClientLayout() {
           imageAlt={selectedLocation?.location || ''}
         />
       </div>
+
+
+
+       <MobileSettingsModal
+        isOpen={isMobileSettingsOpen}
+        onClose={() => setIsMobileSettingsOpen(false)}
+        selectedMapStyle={selectedMapStyle}
+        onMapStyleChange={(id) => {
+          if (id === 'light-simple') {
+            setTheme('light');
+            setSelectedMapStyle('simple');
+          } else if (id === 'dark-simple') {
+            setTheme('dark');
+            setSelectedMapStyle('simple');
+          } else {
+            setSelectedMapStyle(id);
+          }
+        }}
+        showOnlyEditorsChoice={showOnlyEditorsChoice}
+        onEditorsChoiceChange={setShowOnlyEditorsChoice}
+        showOnlySwitzerland={showOnlySwitzerland}
+        onSwitzerlandChange={setShowOnlySwitzerland}
+        showOnlyGraubunden={showOnlyGraubunden}
+        onGraubundenChange={setShowOnlyGraubunden}
+        heightRange={heightRange}
+        onHeightRangeChange={setHeightRange}
+        difficultyRange={difficultyRange}
+        onDifficultyRangeChange={setDifficultyRange}
+      />
     </>
   );
 }
