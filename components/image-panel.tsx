@@ -219,7 +219,7 @@ function wgs84ToCH1903(lat: number, lng: number) {
   className={cn(
     "absolute top-3 left-3 hidden dark:inline-flex items-center space-x-1 pl-[8px] pr-[13px] py-[3px] rounded-2xl text-white",
     "sm:pl-[8px] sm:pr-[13px] sm:py-[3px] sm:space-x-1 sm:text-[15px]",
-    "max-sm:pl-4 max-sm:pr-5 max-sm:py-3 max-sm:space-x-2 max-sm:text-[18px]"
+    "max-sm:pl-3 max-sm:pr-3 max-sm:py-2 max-sm:space-x-2 max-sm:text-[18px]"
   )}
   style={{
     background: "rgba(0, 0, 0, 0.39)",
