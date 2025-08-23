@@ -191,23 +191,22 @@ function wgs84ToCH1903(lat: number, lng: number) {
           {/* Back Button with Short Text - Top Left Overlay */}
 <button
   onClick={onClose}
-  className="absolute top-2 left-2 flex items-center space-x-2 px-3 py-2 rounded-2xl transition-all duration-200"
-  style={{
-    background: "rgba(255, 255, 255, 0.09)",
-    borderRadius: "16px",
-    boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
-    backdropFilter: "blur(3.8px)",
-    WebkitBackdropFilter: "blur(3.8px)",
-    border: "1px solid rgba(255, 255, 255, 0.22)"
-  }}
+  className="
+    absolute top-2 left-2 flex items-center space-x-2 px-3 py-2 rounded-2xl
+    bg-white/20 border border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.1)] backdrop-blur-[2.7px]
+    text-black
+    transition-all duration-200
+    dark:bg-black/20 dark:border-black/10 dark:text-white
+  "
 >
-  <ArrowLeft className="h-[22px] w-[22px] text-black" />
+  <ArrowLeft className="h-[22px] w-[22px]" />
   {location && (
-    <span className="text-[17px] font-medium text-black truncate max-w-[200px]">
+    <span className="text-[17px] font-medium truncate max-w-[200px]">
       {location.short || location.location}
     </span>
   )}
 </button>
+
 
 
           
