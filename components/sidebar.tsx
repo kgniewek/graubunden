@@ -482,7 +482,7 @@ function Sidebar({
             </button>
           </div>
 
-         {isMapStyleExpanded && (
+    {isMapStyleExpanded && (
   <div className="grid grid-cols-3 gap-2">
     {mapStyles.map((style) => {
       const isActive = getActiveStyle() === style.id;
@@ -496,36 +496,36 @@ function Sidebar({
               : 'border-border hover:border-primary/50'
           }`}
         >
-          <div className="absolute inset-0 transition-transform duration-300 group-hover:scale-110">
+          {/* Image Container */}
+          <div className="absolute top-0 left-0 right-0 bottom-[20px]"> 
             <img
               src={style.image}
               alt={style.name[language]}
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
             />
+            <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors duration-200" />
+            
+            {/* Check icon centered in image area only */}
+            {isActive && (
+              <div className="absolute inset-0 flex items-center justify-center z-10">
+                <div className="bg-primary text-primary-foreground rounded-full p-0.5">
+                  <Check className="h-3 w-3" />
+                </div>
+              </div>
+            )}
           </div>
 
-          <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors duration-200" />
-
-          {isActive && (
-            <div className="absolute inset-0 flex items-center justify-center z-10">
-              <div className="bg-primary text-primary-foreground rounded-full p-0.5">
-                <Check className="h-3 w-3" />
-              </div>
-            </div>
-          )}
-
-<div
-  className={`absolute bottom-0 left-0 right-0 px-1 py-[3px] z-10 text-xs font-medium text-center truncate leading-tight transition-all duration-200
-  ${
-    isActive
-      ? 'bg-black text-white dark:bg-white dark:text-black'
-      : 'bg-white/80 text-black dark:bg-black dark:text-white'
-  }`}
->
-  {style.name[language]}
-</div>
-
-
+          {/* Label */}
+          <div
+            className={`absolute bottom-0 left-0 right-0 px-1 py-[3px] z-10 text-xs font-medium text-center truncate leading-tight transition-all duration-200
+            ${
+              isActive
+                ? 'bg-black text-white dark:bg-white dark:text-black'
+                : 'bg-white/80 text-black dark:bg-black dark:text-white'
+            }`}
+          >
+            {style.name[language]}
+          </div>
         </button>
       );
     })}
