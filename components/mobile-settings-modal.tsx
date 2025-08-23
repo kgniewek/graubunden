@@ -89,16 +89,16 @@ export default function MobileSettingsModal({
       onClick={onClose}
     >
       <div
-        className="relative bg-background rounded-lg shadow-lg w-full max-w-[95%] max-h-[90%] overflow-y-auto p-4"
+        className="relative bg-background rounded-lg shadow-lg w-full max-w-[95%] max-h-[90%] overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Close Button */}
         <button className="absolute top-3 right-3" onClick={onClose} aria-label="Close">
-          <X className="h-6 w-6" />
+          <X className="h-8 w-8" />
         </button>
 
         {/* Filters */}
-        <div className="mt-2 space-y-4">
+        <div className="mt-4 space-y-4 p-4">
           <h3 className="font-bold text-lg">
             <T en="Filters" de="Filter" it="Filtri" fr="Filtres" />
           </h3>
@@ -204,10 +204,10 @@ export default function MobileSettingsModal({
         </div>
 
         {/* Full-width 1px separator */}
-        <div className="w-full h-px bg-border my-4" />
+        <div className="w-full h-px bg-border my-8 pt-4" />
 
         {/* Map Styles (styled like sidebar) */}
-        <div className="space-y-3">
+        <div className="space-y-3 p-4">
           <h3 className="font-bold text-lg">
             <T en="Map Style" de="Kartenstil" it="Stile mappa" fr="Style de carte" />
           </h3>
