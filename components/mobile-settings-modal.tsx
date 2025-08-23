@@ -92,10 +92,23 @@ export default function MobileSettingsModal({
         className="relative bg-background rounded-lg shadow-lg w-full max-w-[95%] max-h-[90%] overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Close Button */}
-        <button className="absolute top-3 right-3" onClick={onClose} aria-label="Close">
-          <X className="h-8 w-8" />
-        </button>
+  <div className="flex items-center justify-between p-4">
+    <h2 className="font-bold text-xl">
+      <T
+        en="Preferences"
+        de="Einstellungen"
+        it="Preferenze"
+        fr="Préférences"
+      />
+    </h2>
+    <button
+      className="text-muted-foreground hover:text-foreground"
+      onClick={onClose}
+      aria-label="Close"
+    >
+      <X className="h-8 w-8" />
+    </button>
+  </div>
 
         {/* Filters */}
         <div className="mt-4 space-y-4 p-4">
@@ -163,7 +176,7 @@ export default function MobileSettingsModal({
                     />
               </span>
               <Switch
-                className="scale-90"
+                className=""
                 checked={showOnlyEditorsChoice}
                 onCheckedChange={onEditorsChoiceChange}
               />
@@ -179,7 +192,7 @@ export default function MobileSettingsModal({
       />  
               </span>
               <Switch
-                className="scale-90"
+                className=""
                 checked={showOnlySwitzerland}
                 onCheckedChange={onSwitzerlandChange}
               />
@@ -195,7 +208,7 @@ export default function MobileSettingsModal({
       />  
               </span>
               <Switch
-                className="scale-90"
+                className=""
                 checked={showOnlyGraubunden}
                 onCheckedChange={onGraubundenChange}
               />
@@ -204,7 +217,7 @@ export default function MobileSettingsModal({
         </div>
 
         {/* Full-width 1px separator */}
-        <div className="w-full h-px bg-border my-8 pt-4" />
+        <div className="w-full h-[1px] bg-border my-4" />
 
         {/* Map Styles (styled like sidebar) */}
         <div className="space-y-3 p-4">
