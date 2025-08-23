@@ -525,7 +525,7 @@ function Sidebar({
             <img
               src={style.image}
               alt={style.name[language]}
-              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+              className="w-full h-full object-cover object-top transition-transform duration-300 group-hover:scale-110"
             />
             <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors duration-200" />
             
