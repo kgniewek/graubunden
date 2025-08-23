@@ -425,7 +425,6 @@ function wgs84ToCH1903(lat: number, lng: number) {
   );
 }
 
-// Fullscreen Modal - Rendered outside the panel to cover entire website
 export function FullscreenModal({ 
   isOpen, 
   onClose, 
@@ -444,19 +443,19 @@ export function FullscreenModal({
       className="fixed inset-0 bg-black/80 z-[9999] flex items-center justify-center"
       onClick={onClose}
     >
-      <div className="relative inline-block">
+      {/* Wrap image in relative container so button can be positioned above it */}
+      <div className="relative inline-block" onClick={(e) => e.stopPropagation()}>
         {/* Fullscreen Image */}
         <img
           src={imageSrc}
           alt={imageAlt}
           className="max-w-[90vw] max-h-[90vh] object-contain"
-          onClick={(e) => e.stopPropagation()}
         />
 
         {/* Close button above image on the right */}
         <button
           onClick={onClose}
-          className="absolute -top-3 right-2 flex items-center space-x-2 px-3 py-2 text-white font-semibold rounded-lg transition-all z-10
+          className="absolute -top-4 right-2 flex items-center space-x-2 px-3 py-2 text-white font-semibold rounded-lg transition-all
                      bg-transparent hover:bg-black/70"
         >
           <span className="text-sm">
