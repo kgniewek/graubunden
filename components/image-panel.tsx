@@ -193,10 +193,10 @@ function wgs84ToCH1903(lat: number, lng: number) {
   onClick={onClose}
   className="
     absolute top-3 left-3 flex items-center space-x-1 px-2 py-[3px] rounded-2xl
-    bg-white/30 border border-white/6 shadow-[0_5px_25px_rgba(0,0,0,0.11)] backdrop-blur-[3.7px]
+    bg-white/30 border border-white/3 shadow-[0_5px_25px_rgba(0,0,0,0.11)] backdrop-blur-[3.7px]
     text-black
     transition-all duration-200
-    dark:bg-black/30 dark:border-black/6 dark:text-white
+    dark:bg-black/30 dark:border-black/3 dark:text-white
   "
 >
   <ArrowLeft className="h-[18px] w-[18px]" />
