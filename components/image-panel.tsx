@@ -456,9 +456,9 @@ export function FullscreenModal({
         {/* Close button above image on the right */}
         <button
           onClick={onClose}
-          className="absolute -top-3 right-2 flex items-center space-x-1 px-2 py-1 bg-black/60 hover:bg-black/80 text-white rounded-full transition-all z-10"
+          className="absolute -top-3 right-2 flex items-center space-x-2 px-3 py-2 text-white font-semibold rounded-lg transition-all z-10
+                     bg-transparent hover:bg-black/70"
         >
-          <X className="h-5 w-5" />
           <span className="text-sm">
             <T 
               en="Close" 
@@ -467,8 +467,10 @@ export function FullscreenModal({
               fr="Fermer" 
             />
           </span>
+          <X className="h-5 w-5" />
         </button>
       </div>
     </div>
   );
 }
+
