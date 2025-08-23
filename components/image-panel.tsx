@@ -426,52 +426,49 @@ function wgs84ToCH1903(lat: number, lng: number) {
 }
 
 // Fullscreen Modal - Rendered outside the panel to cover entire website
-{isMapStyleExpanded && (
-  <div className="grid grid-cols-3 gap-2">
-    {mapStyles.map((style) => {
-      const isActive = getActiveStyle() === style.id;
-      return (
+export function FullscreenModal({ 
+  isOpen, 
+  onClose, 
+  imageSrc, 
+  imageAlt 
+}: { 
+  isOpen: boolean; 
+  onClose: () => void; 
+  imageSrc: string; 
+  imageAlt: string; 
+}) {
+  if (!isOpen) return null;
+
+  return (
+    <div 
+      className="fixed inset-0 bg-black/80 z-[9999] flex items-center justify-center"
+      onClick={onClose}
+    >
+      {/* Close button above image on right */}
+      <div className="absolute top-4 right-6 flex items-center space-x-2 z-[10000]">
         <button
-          key={style.id}
-          onClick={() => handleMapStyleChange(style.id)}
-          className={`relative aspect-[3/2] rounded-md border-2 transition-all duration-200 overflow-hidden group ${
-            isActive
-              ? 'border-primary'
-              : 'border-border hover:border-primary/50'
-          }`}
+          onClick={onClose}
+          className="flex items-center space-x-2 px-3 py-1 bg-black/60 hover:bg-black/80 text-white rounded-full transition-all"
         >
-          {/* Image and Overlay Container */}
-          <div className="absolute top-0 left-0 right-0 bottom-[24px]">
-            <img
-              src={style.image}
-              alt={style.name[language]}
-              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+          <X className="h-5 w-5" />
+          <span className="text-sm">
+            <T 
+              en="Close" 
+              de="Schließen" 
+              it="Chiudi" 
+              fr="Fermer" 
             />
-            <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors duration-200" />
-
-            {/* Check Icon Centered in Image Area */}
-            {isActive && (
-              <div className="absolute inset-0 flex items-center justify-center z-10">
-                <div className="bg-primary text-primary-foreground rounded-full p-1 shadow-md">
-                  <Check className="h-3.5 w-3.5" />
-                </div>
-              </div>
-            )}
-          </div>
-
-          {/* Label */}
-          <div
-            className={`absolute bottom-0 left-0 right-0 px-1 py-[4px] z-10 text-xs font-medium text-center truncate leading-tight transition-all duration-200
-            ${
-              isActive
-                ? 'bg-black text-white dark:bg-white dark:text-black'
-                : 'bg-white/80 text-black dark:bg-black dark:text-white'
-            }`}
-          >
-            {style.name[language]}
-          </div>
+          </span>
         </button>
-      );
-    })}
-  </div>
-)}
+      </div>
+
+      {/* Fullscreen Image */}
+      <img
+        src={imageSrc}
+        alt={imageAlt}
+        className="max-w-[90vw] max-h-[90vh] object-contain"
+        onClick={(e) => e.stopPropagation()}
+      />
+    </div>
+  );
+}
