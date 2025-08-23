@@ -416,7 +416,7 @@ function Sidebar({
 </div>
 
 
-              <div className="space-y-2.5 mt-3">
+              <div className="space-y-2 mt-3">
                 <div className="flex items-center justify-between">
                   <span className="text-xs font-medium">
                     <T
