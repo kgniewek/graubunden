@@ -88,7 +88,7 @@ export function ClientLayout() {
             className="w-[22px] h-auto rounded-sm object-contain"
           />
           <span className="text-sm font-medium">{currentLanguage.name}</span>
-          <ChevronDown className="h-4 w-4 -ml-1 transition-transform group-hover:rotate-180" />
+  <ChevronDown className="hidden sm:block h-4 w-4 -ml-1 transition-transform group-hover:rotate-180" />
         </Button>
 
         <div className="absolute right-0 top-full mt-1 w-44 bg-background border border-border rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
