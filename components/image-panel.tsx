@@ -189,16 +189,38 @@ function wgs84ToCH1903(lat: number, lng: number) {
           )}
           
 {/* Light mode button */}
+{/* Light mode button */}
 <button
   onClick={onClose}
   className="absolute top-3 left-3 dark:hidden flex items-center space-x-1 pl-[8px] pr-[16px] py-[3px] rounded-2xl text-black"
   style={{
-    background: "rgba(255, 255, 255, 0.29)",
+    background: "rgba(255, 255, 255, 0.39)",
     borderRadius: "16px",
     boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
     backdropFilter: "blur(3.7px)",
     WebkitBackdropFilter: "blur(3.7px)",
     border: "1px solid rgba(255, 255, 255, 0.06)"
+  }}
+>
+  <ArrowLeft className="h-[18px] w-[18px]" />
+  {location && (
+    <span className="text-[15px] font-medium truncate max-w-[150px] mr-1">
+      {location.short || location.location}
+    </span>
+  )}
+</button>
+
+{/* Dark mode button */}
+<button
+  onClick={onClose}
+  className="absolute top-3 left-3 hidden dark:inline-flex items-center space-x-1 pl-[8px] pr-[16px] py-[3px] rounded-2xl text-white"
+  style={{
+    background: "rgba(0, 0, 0, 0.39)",
+    borderRadius: "16px",
+    boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
+    backdropFilter: "blur(3.7px)",
+    WebkitBackdropFilter: "blur(3.7px)",
+    border: "1px solid rgba(0, 0, 0, 0.06)"
   }}
 >
   <ArrowLeft className="h-[18px] w-[18px]" />
