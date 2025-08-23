@@ -110,6 +110,8 @@ export default function MobileSettingsModal({
     </button>
   </div>
 
+                <div className="w-full h-[1px] bg-border mt-1" />
+
         {/* Filters */}
         <div className=" space-y-5 pb-5 pl-5 pr-5 ">
 <h3 className="font-bold text-lg">
@@ -222,7 +224,6 @@ fr="Afficher seulement les choix de l'éditeur"
           </div>
         </div>
 
-        {/* Full-width 1px separator */}
         <div className="w-full h-[1px] bg-border mt-1" />
 
         {/* Map Styles (styled like sidebar) */}
