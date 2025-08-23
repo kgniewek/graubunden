@@ -191,7 +191,8 @@ function wgs84ToCH1903(lat: number, lng: number) {
 {/* Light mode button */}
 <button
   onClick={onClose}
-  className="absolute top-3 left-3 dark:hidden flex items-center space-x-2 px-3 py-2 sm:px-4 sm:py-3 rounded-2xl text-black"
+  className="absolute top-3 left-3 dark:hidden flex items-center space-x-1 pl-[8px] pr-[13px] py-[3px] rounded-2xl text-black
+             xs:pl-4 xs:pr-5 xs:py-2 xs:space-x-2 xs:text-[17px]"
   style={{
     background: "rgba(255, 255, 255, 0.39)",
     borderRadius: "16px",
@@ -201,9 +202,9 @@ function wgs84ToCH1903(lat: number, lng: number) {
     border: "1px solid rgba(255, 255, 255, 0.06)"
   }}
 >
-  <ArrowLeft className="h-5 w-5 sm:h-6 sm:w-6" />
+  <ArrowLeft className="h-[18px] w-[18px] xs:h-6 xs:w-6" />
   {location && (
-    <span className="text-[15px] sm:text-[17px] font-medium truncate max-w-[150px]">
+    <span className="text-[15px] font-medium truncate max-w-[150px] xs:text-[17px]">
       {location.short || location.location}
     </span>
   )}
@@ -212,7 +213,8 @@ function wgs84ToCH1903(lat: number, lng: number) {
 {/* Dark mode button */}
 <button
   onClick={onClose}
-  className="absolute top-3 left-3 hidden dark:inline-flex items-center space-x-2 px-3 py-2 sm:px-4 sm:py-3 rounded-2xl text-white"
+  className="absolute top-3 left-3 hidden dark:inline-flex items-center space-x-1 pl-[8px] pr-[13px] py-[3px] rounded-2xl text-white
+             xs:pl-4 xs:pr-5 xs:py-2 xs:space-x-2 xs:text-[17px]"
   style={{
     background: "rgba(0, 0, 0, 0.39)",
     borderRadius: "16px",
@@ -222,9 +224,9 @@ function wgs84ToCH1903(lat: number, lng: number) {
     border: "1px solid rgba(0, 0, 0, 0.06)"
   }}
 >
-  <ArrowLeft className="h-5 w-5 sm:h-6 sm:w-6" />
+  <ArrowLeft className="h-[18px] w-[18px] xs:h-6 xs:w-6" />
   {location && (
-    <span className="text-[15px] sm:text-[17px] font-medium truncate max-w-[150px]">
+    <span className="text-[15px] font-medium truncate max-w-[150px] xs:text-[17px]">
       {location.short || location.location}
     </span>
   )}
