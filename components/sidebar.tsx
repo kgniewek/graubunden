@@ -437,7 +437,14 @@ function Sidebar({
                 </div>
 
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-medium">Show locations only within Switzerland</span>
+                  <span className="text-xs font-medium">
+                     <T
+        en="Show locations only within Switzerland"
+        de="Nur Standorte innerhalb der Schweiz anzeigen"
+        it="Mostra solo località in Svizzera"
+        fr="Afficher uniquement les emplacements en Suisse"
+      />
+                  </span>
                   <Switch
                     className="scale-75"
                     checked={showOnlySwitzerland}
@@ -449,7 +456,14 @@ function Sidebar({
                 </div>
 
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-medium">Show locations only within Graubünden</span>
+                  <span className="text-xs font-medium">
+                      <T
+        en="Show locations only within Graubünden"
+        de="Nur Standorte innerhalb Graubündens anzeigen"
+        it="Mostra solo località nei Grigioni"
+        fr="Afficher uniquement les emplacements dans les Grisons"
+      />
+                  </span>
                   <Switch
                     className="scale-75"
                     checked={showOnlyGraubunden}
