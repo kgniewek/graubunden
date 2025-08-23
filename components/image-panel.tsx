@@ -191,7 +191,7 @@ function wgs84ToCH1903(lat: number, lng: number) {
 {/* Light mode button */}
 <button
   onClick={onClose}
-  className="absolute top-3 left-3 dark:hidden flex items-center space-x-1 pl-[8px] pr-[16px] py-[3px] rounded-2xl text-black"
+  className="absolute top-3 left-3 dark:hidden flex items-center space-x-1 pl-[8px] pr-[13px] py-[3px] rounded-2xl text-black"
   style={{
     background: "rgba(255, 255, 255, 0.39)",
     borderRadius: "16px",
@@ -212,7 +212,7 @@ function wgs84ToCH1903(lat: number, lng: number) {
 {/* Dark mode button */}
 <button
   onClick={onClose}
-  className="absolute top-3 left-3 hidden dark:inline-flex items-center space-x-1 pl-[8px] pr-[16px] py-[3px] rounded-2xl text-white"
+  className="absolute top-3 left-3 hidden dark:inline-flex items-center space-x-1 pl-[8px] pr-[13px] py-[3px] rounded-2xl text-white"
   style={{
     background: "rgba(0, 0, 0, 0.39)",
     borderRadius: "16px",
