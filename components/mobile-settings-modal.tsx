@@ -110,7 +110,7 @@ export default function MobileSettingsModal({
     </button>
   </div>
 
-                <div className="w-full h-[1px] bg-border mt-1" />
+                <div className="w-full h-[1px] bg-border mb-5" />
 
         {/* Filters */}
         <div className=" space-y-5 pb-5 pl-5 pr-5 ">
