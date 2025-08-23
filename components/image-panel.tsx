@@ -455,7 +455,7 @@ export function FullscreenModal({
         {/* Close button above image on the right */}
 <button
   onClick={onClose}
-  className="absolute -top-12 right-[1px] flex items-center space-x-2 pl-[18px] pr-[10px] py-[6px]  text-white font-semibold rounded-full transition-all
+  className="absolute -top-12 right-[1px] flex items-center space-x-2 pl-[16px] pr-[10px] py-[6px]  text-white font-semibold rounded-full transition-all
              bg-transparent hover:bg-muted/80"
 >
   <span className="text-md">
