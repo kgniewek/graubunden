@@ -453,21 +453,22 @@ export function FullscreenModal({
         />
 
         {/* Close button above image on the right */}
-        <button
-          onClick={onClose}
-          className="absolute -top-10 right-2 flex items-center space-x-2 px-3 py-2 text-white font-semibold rounded-lg transition-all
-                     bg-transparent hover:bg-black/70"
-        >
-          <span className="text-sm">
-            <T 
-              en="Close" 
-              de="Schließen" 
-              it="Chiudi" 
-              fr="Fermer" 
-            />
-          </span>
-          <X className="h-5 w-5" />
-        </button>
+<button
+  onClick={onClose}
+  className="absolute -top-12 right-2 flex items-center space-x-2 px-3 py-2 text-white font-semibold rounded-lg transition-all
+             bg-transparent hover:bg-gray-800/80"
+>
+  <span className="text-sm">
+    <T 
+      en="Close" 
+      de="Schließen" 
+      it="Chiudi" 
+      fr="Fermer" 
+    />
+  </span>
+  <X className="h-5 w-5" />
+</button>
+
       </div>
     </div>
   );
