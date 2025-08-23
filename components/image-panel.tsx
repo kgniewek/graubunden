@@ -188,16 +188,39 @@ function wgs84ToCH1903(lat: number, lng: number) {
             <div className="w-full h-full flex items-center justify-center text-4xl">📷</div>
           )}
           
-          {/* Back Button with Short Text - Top Left Overlay */}
+{/* Light mode button */}
 <button
   onClick={onClose}
-  className="
-    absolute top-3 left-3 flex items-center space-x-1 px-2 py-[3px] rounded-2xl
-    bg-white/30 border border-white/3 shadow-[0_5px_25px_rgba(0,0,0,0.11)] backdrop-blur-[3.7px]
-    text-black
-    transition-all duration-200
-    dark:bg-black/30 dark:border-black/3 dark:text-white
-  "
+  className="absolute top-3 left-3 dark:hidden flex items-center space-x-1 px-2 py-[3px] rounded-2xl text-black"
+  style={{
+    background: "rgba(255, 255, 255, 0.29)",
+    borderRadius: "16px",
+    boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
+    backdropFilter: "blur(3.7px)",
+    WebkitBackdropFilter: "blur(3.7px)",
+    border: "1px solid rgba(255, 255, 255, 0.06)"
+  }}
+>
+  <ArrowLeft className="h-[18px] w-[18px]" />
+  {location && (
+    <span className="text-[15px] font-medium truncate max-w-[150px]">
+      {location.short || location.location}
+    </span>
+  )}
+</button>
+
+{/* Dark mode button */}
+<button
+  onClick={onClose}
+  className="absolute top-3 left-3 hidden dark:inline-flex items-center space-x-1 px-2 py-[3px] rounded-2xl text-white"
+  style={{
+    background: "rgba(0, 0, 0, 0.29)",
+    borderRadius: "16px",
+    boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
+    backdropFilter: "blur(3.7px)",
+    WebkitBackdropFilter: "blur(3.7px)",
+    border: "1px solid rgba(0, 0, 0, 0.06)"
+  }}
 >
   <ArrowLeft className="h-[18px] w-[18px]" />
   {location && (
