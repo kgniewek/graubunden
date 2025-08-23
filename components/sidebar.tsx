@@ -509,7 +509,7 @@ function Sidebar({
             {isActive && (
               <div className="absolute inset-0 flex items-center justify-center z-10">
                 <div className="bg-primary text-primary-foreground rounded-full p-0.5">
-                  <Check className="h-3 w-3" />
+                  <Check className="h-4 w-4" />
                 </div>
               </div>
             )}
