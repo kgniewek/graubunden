@@ -105,7 +105,7 @@ export default function MobileSettingsModal({
 
           {/* Height Range (label left, slider right) */}
           <div className="flex items-start gap-4">
-            <label className="text-xs font-medium w-16">
+            <label className="text-md font-medium w-20">
               <T en="Height" de="Höhe" it="Altezza" fr="Hauteur" />
             </label>
             <div className="flex-1">
@@ -130,7 +130,7 @@ export default function MobileSettingsModal({
 
           {/* Difficulty (label left, slider right) */}
           <div className="flex items-start gap-4">
-            <label className="text-xs font-medium w-16">
+            <label className="text-md font-medium w-20">
               <T en="Difficulty" de="Schwierigkeit" it="Difficoltà" fr="Difficulté" />
             </label>
             <div className="flex-1">
@@ -154,7 +154,7 @@ export default function MobileSettingsModal({
           {/* Switches (extra spacing) */}
           <div className="space-y-4 pt-1">
             <div className="flex items-center justify-between">
-              <span className="text-xs font-medium">
+              <span className="text-md font-medium">
  <T
                       en="Show only Editor's Choice locations"
                       de="Nur Editor's Choice Standorte anzeigen"
@@ -170,7 +170,7 @@ export default function MobileSettingsModal({
             </div>
 
             <div className="flex items-center justify-between">
-              <span className="text-xs font-medium">
+              <span className="text-md font-medium">
                <T
         en="Show locations only within Switzerland"
         de="Nur Standorte innerhalb der Schweiz anzeigen"
@@ -186,7 +186,7 @@ export default function MobileSettingsModal({
             </div>
 
             <div className="flex items-center justify-between">
-              <span className="text-xs font-medium">
+              <span className="text-md font-medium">
                 <T
         en="Show locations only within Graubünden"
         de="Nur Standorte innerhalb Graubündens anzeigen"
