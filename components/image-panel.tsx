@@ -194,7 +194,7 @@ function wgs84ToCH1903(lat: number, lng: number) {
   className={cn(
     "absolute top-3 left-3 dark:hidden flex items-center space-x-1 pl-[8px] pr-[13px] py-[3px] rounded-2xl text-black",
     "sm:pl-[8px] sm:pr-[13px] sm:py-[3px] sm:space-x-1 sm:text-[15px]", // desktop, stays the same
-    "max-sm:pl-4 max-sm:pr-5 max-sm:py-3 max-sm:space-x-2 max-sm:text-[18px]" // mobile overrides
+    "max-sm:pl-3 max-sm:pr-3 max-sm:py-2 max-sm:space-x-2 max-sm:text-[18px]" // mobile overrides
   )}
   style={{
     background: "rgba(255, 255, 255, 0.39)",
