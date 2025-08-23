@@ -239,12 +239,22 @@ function wgs84ToCH1903(lat: number, lng: number) {
           
           {/* Fullscreen Icon */}
           {location && (
-            <button
-              onClick={onFullscreenOpen}
-              className="absolute bottom-2 left-2 p-2 bg-black/0 hover:bg-black/50 rounded-full transition-all duration-200 group-hover:opacity-100 opacity-80"
-            >
-              <Maximize2 className="h-4 w-4 text-white" />
-            </button>
+<button
+  onClick={onFullscreenOpen}
+  className="absolute bottom-2 left-2 flex items-center space-x-1 p-2 text-white font-semibold rounded-lg
+             bg-transparent hover:bg-muted transition-all duration-200 opacity-80 hover:opacity-100 group"
+>
+  <Maximize2 className="h-4 w-4" />
+  <span className="text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+    <T
+      en="View"
+      de="Maximieren"
+      it="Visualizza"
+      fr="Agrandir"
+    />
+  </span>
+</button>
+
           )}
         </div>
 
@@ -455,7 +465,7 @@ export function FullscreenModal({
         {/* Close button above image on the right */}
 <button
   onClick={onClose}
-  className="absolute -top-12 right-[1px] flex items-center space-x-2 pl-[16px] pr-[10px] py-[6px]  text-white font-semibold rounded-full transition-all
+  className="absolute -top-12 right-[1px] flex items-center space-x-1 pl-[16px] pr-[10px] py-[6px]  text-white font-semibold rounded-full transition-all
              bg-transparent hover:bg-muted/80"
 >
   <span className="text-md">
