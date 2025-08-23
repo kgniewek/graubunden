@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Moon, Sun, ChevronDown, MapPin } from 'lucide-react';
+import { Moon, Sun, ChevronDown, MapPin, Settings } from 'lucide-react';
 import Sidebar from '@/components/sidebar';
 import MapGallery from '@/components/map-gallery';
 import { ImagePanel, FullscreenModal } from '@/components/image-panel';
