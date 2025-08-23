@@ -93,7 +93,7 @@ export default function MobileSettingsModal({
         onClick={(e) => e.stopPropagation()}
       >
   <div className="flex items-center justify-between p-4">
-    <h2 className="font-bold text-xl">
+    <h2 className="font-bold text-2xl">
       <T
         en="Preferences"
         de="Einstellungen"
@@ -106,12 +106,12 @@ export default function MobileSettingsModal({
       onClick={onClose}
       aria-label="Close"
     >
-      <X className="h-8 w-8" />
+      <X className="h-[32px] w-[32px]" />
     </button>
   </div>
 
         {/* Filters */}
-        <div className="mt-4 space-y-4 p-4">
+        <div className=" space-y-4 p-4">
           <h3 className="font-bold text-lg">
             <T en="Filters" de="Filter" it="Filtri" fr="Filtres" />
           </h3>
