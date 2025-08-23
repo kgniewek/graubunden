@@ -53,7 +53,7 @@ export function ClientLayout() {
       <div className="flex h-screen overflow-hidden flex-col">
         {/* Navigation - fully inside client layout */}
 <nav className="sticky top-0 z-50 w-full border-b border-gray-200 dark:border-gray-800 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-<div className="flex h-[55px] sm:h-12 w-full items-center justify-between px-2 sm:px-6">
+<div className="flex h-[55px] sm:h-12 w-full items-center justify-between px-1 sm:px-6">
     {/* Left: Logo */}
     <a className="flex items-center space-x-[6px]" href="/">
       <img
