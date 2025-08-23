@@ -155,12 +155,12 @@ export default function MobileSettingsModal({
           <div className="space-y-4 pt-1">
             <div className="flex items-center justify-between">
               <span className="text-xs font-medium">
-                <T
-                  en="Show only Editor's Choice"
-                  de="Nur Editor's Choice"
-                  it="Solo Editor's Choice"
-                  fr="Seulement choix de l'éditeur"
-                />
+ <T
+                      en="Show only Editor's Choice locations"
+                      de="Nur Editor's Choice Standorte anzeigen"
+                      it="Mostra solo le località scelte dall'editore"
+                      fr="Afficher uniquement les emplacements du choix de l'éditeur"
+                    />
               </span>
               <Switch
                 className="scale-90"
@@ -170,7 +170,14 @@ export default function MobileSettingsModal({
             </div>
 
             <div className="flex items-center justify-between">
-              <span className="text-xs font-medium">Show only Switzerland</span>
+              <span className="text-xs font-medium">
+               <T
+        en="Show locations only within Switzerland"
+        de="Nur Standorte innerhalb der Schweiz anzeigen"
+        it="Mostra solo località in Svizzera"
+        fr="Afficher uniquement les emplacements en Suisse"
+      />  
+              </span>
               <Switch
                 className="scale-90"
                 checked={showOnlySwitzerland}
@@ -179,7 +186,14 @@ export default function MobileSettingsModal({
             </div>
 
             <div className="flex items-center justify-between">
-              <span className="text-xs font-medium">Show only Graubünden</span>
+              <span className="text-xs font-medium">
+                <T
+        en="Show locations only within Graubünden"
+        de="Nur Standorte innerhalb Graubündens anzeigen"
+        it="Mostra solo località nei Grigioni"
+        fr="Afficher uniquement les emplacements dans les Grisons"
+      />  
+              </span>
               <Switch
                 className="scale-90"
                 checked={showOnlyGraubunden}
@@ -212,10 +226,11 @@ export default function MobileSettingsModal({
                   {/* Image area */}
                   <div className="absolute top-0 left-0 right-0 bottom-[20px]">
                     <img
-                      src={style.image}
-                      alt={style.name[language]}
-                      className="w-full h-full object-cover"
-                    />
+  src={style.image}
+  alt={style.name[language]}
+  className="w-full h-full object-cover object-top"
+/>
+
                     <div className="absolute inset-0 bg-black/20" />
 
                     {/* Bigger centered check on active */}
