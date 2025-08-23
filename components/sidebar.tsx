@@ -514,15 +514,17 @@ function Sidebar({
             </div>
           )}
 
-          <div
-            className={`absolute bottom-0 left-0 right-0 px-1 py-[3px] z-10 text-xs font-medium text-center truncate leading-tight transition-all duration-200
-            ${isActive
-              ? 'bg-white text-black dark:bg-white dark:text-black'
-              : 'bg-white text-black dark:bg-black dark:text-white'
-            }`}
-          >
-            {style.name[language]}
-          </div>
+         <div
+  className={`absolute bottom-0 left-0 right-0 px-1 py-[3px] z-10 text-xs font-medium text-center truncate leading-tight transition-all duration-200
+  ${
+    isActive
+      ? 'bg-white text-black dark:bg-white dark:text-black shadow-sm font-semibold'
+      : 'bg-gray-100 text-black dark:bg-black dark:text-white'
+  }`}
+>
+  {style.name[language]}
+</div>
+
         </button>
       );
     })}
