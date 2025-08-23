@@ -112,9 +112,15 @@ export default function MobileSettingsModal({
 
         {/* Filters */}
         <div className=" space-y-5 p-5">
-          <h3 className="font-bold text-lg">
-            <T en="Filters" de="Filter" it="Filtri" fr="Filtres" />
-          </h3>
+<h3 className="font-bold text-lg">
+  <T 
+    en="Location Filters" 
+    de="Standortfilter" 
+    it="Filtri località" 
+    fr="Filtres de localisation" 
+  />
+</h3>
+
 
           {/* Height Range (label left, slider right) */}
           <div className="flex items-start gap-4">
@@ -222,8 +228,14 @@ export default function MobileSettingsModal({
         {/* Map Styles (styled like sidebar) */}
         <div className="space-y-3 p-5">
           <h3 className="font-bold text-lg">
-            <T en="Map Style" de="Kartenstil" it="Stile mappa" fr="Style de carte" />
-          </h3>
+  <T 
+    en="Map Source" 
+    de="Kartenquelle" 
+    it="Fonte della mappa" 
+    fr="Source de la carte" 
+  />
+</h3>
+
 
           <div className="grid grid-cols-3 gap-4">
             {mapStyles.map((style) => {
