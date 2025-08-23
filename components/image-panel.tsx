@@ -203,7 +203,7 @@ function wgs84ToCH1903(lat: number, lng: number) {
 >
   <ArrowLeft className="h-[18px] w-[18px]" />
   {location && (
-    <span className="text-[15px] font-medium truncate max-w-[150px] mr-1">
+    <span className="text-[15px] font-medium truncate max-w-[150px] ">
       {location.short || location.location}
     </span>
   )}
@@ -224,7 +224,7 @@ function wgs84ToCH1903(lat: number, lng: number) {
 >
   <ArrowLeft className="h-[18px] w-[18px]" />
   {location && (
-    <span className="text-[15px] font-medium truncate max-w-[150px] mr-1">
+    <span className="text-[15px] font-medium truncate max-w-[150px] ">
       {location.short || location.location}
     </span>
   )}
