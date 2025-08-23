@@ -150,7 +150,7 @@ export default function MobileSettingsModal({
           {/* Difficulty (label left, slider right) */}
           <div className="flex items-start gap-4">
             <label className="text-md font-medium w-20">
-              <T en="Difficulty" de="Schwierigkeit" it="Difficoltà" fr="Difficulté" />
+              <T en="Difficulty" de="Grad" it="Difficoltà" fr="Difficulté" />
             </label>
             <div className="flex-1">
               <RangeSlider
