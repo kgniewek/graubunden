@@ -1,10 +1,9 @@
 'use client';
 
 import React from 'react';
-import { X } from 'lucide-react';
+import { X, Check } from 'lucide-react';
 import { RangeSlider } from '@/components/ui/range-slider';
 import { Switch } from '@/components/ui/switch';
-import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
 import { T, useLocale } from '@/app/locale-context';
 
@@ -65,16 +64,19 @@ export default function MobileSettingsModal({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/50 flex justify-center items-center">
-      <div className="bg-background w-full h-full overflow-y-auto p-4 relative">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-3">
+      <div className="bg-background rounded-lg shadow-lg w-full max-w-[95%] max-h-[90%] overflow-y-auto relative p-4">
         {/* Close Button */}
-        <button className="absolute top-4 right-4" onClick={onClose}>
+        <button className="absolute top-3 right-3" onClick={onClose}>
           <X className="h-6 w-6" />
         </button>
 
         {/* Filters */}
-        <div className="space-y-3">
-          <h3 className="font-bold text-lg"><T en="Filters" de="Filter" it="Filtri" fr="Filtres" /></h3>
+        <div className="space-y-4 mt-2">
+          <h3 className="font-bold text-lg mb-2">
+            <T en="Filters" de="Filter" it="Filtri" fr="Filtres" />
+          </h3>
+
           {/* Height Range */}
           <div>
             <label className="text-sm font-medium"><T en="Height" de="Höhe" it="Altezza" fr="Hauteur" /></label>
@@ -111,16 +113,30 @@ export default function MobileSettingsModal({
           </div>
         </div>
 
+        {/* Separator */}
         <Separator className="my-4" />
 
         {/* Map Styles */}
         <div>
-          <h3 className="font-bold text-lg"><T en="Map Style" de="Kartenstil" it="Stile mappa" fr="Style de carte" /></h3>
-          <div className="grid grid-cols-3 gap-2 mt-2">
+          <h3 className="font-bold text-lg mb-3"><T en="Map Style" de="Kartenstil" it="Stile mappa" fr="Style de carte" /></h3>
+          <div className="grid grid-cols-3 gap-2">
             {mapStyles.map((style) => (
-              <button key={style.id} onClick={() => onMapStyleChange(style.id)} className={`relative aspect-[3/2] rounded-md border-2 overflow-hidden ${selectedMapStyle === style.id ? 'border-primary' : 'border-border'}`}>
+              <button
+                key={style.id}
+                onClick={() => onMapStyleChange(style.id)}
+                className={`relative aspect-[3/2] rounded-md border-2 overflow-hidden ${selectedMapStyle === style.id ? 'border-primary' : 'border-border'}`}
+              >
                 <img src={style.image} alt={style.name[language]} className="w-full h-full object-cover" />
-                <div className="absolute bottom-0 w-full bg-black/50 text-white text-xs text-center py-1">{style.name[language]}</div>
+                <div className="absolute bottom-0 w-full bg-black/50 text-white text-xs text-center py-1">
+                  {style.name[language]}
+                </div>
+                {selectedMapStyle === style.id && (
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <div className="bg-primary text-primary-foreground rounded-full p-1">
+                      <Check className="h-4 w-4" />
+                    </div>
+                  </div>
+                )}
               </button>
             ))}
           </div>
