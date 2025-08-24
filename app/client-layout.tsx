@@ -79,7 +79,7 @@ export function ClientLayout() {
       />
       
     </a>
-  <span className="text-xs ml-8 font-thin">by Krzysztof Gniewek</span>
+  <span className="hidden sm:inline-block text-xs ml-8 font-thin">by Krzysztof Gniewek</span>
 </div>
     {/* Right: Language selector + Theme toggle */}
     <div className="flex items-center space-x-1">
