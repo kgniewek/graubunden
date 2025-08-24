@@ -55,6 +55,7 @@ export function ClientLayout() {
 <nav className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
 <div className="flex h-[55px] sm:h-12 w-full items-center justify-between px-1 sm:px-6">
     {/* Left: Logo */}
+<div>
     <a className="flex items-center space-x-[6px]" href="/">
       <img
         src="/logo-light-map.svg"
@@ -76,9 +77,10 @@ export function ClientLayout() {
         alt="Graubünden Gallery"
         className="h-[26px] w-auto flex-shrink-0 hidden dark:inline-block"
       />
-      <span className="text-xs ml-10 font-thin">by Krzysztof Gniewek</span>
+      
     </a>
-
+  <span className="text-xs ml-8 font-thin">by Krzysztof Gniewek</span>
+</div>
     {/* Right: Language selector + Theme toggle */}
     <div className="flex items-center space-x-1">
       <div className="relative group">
