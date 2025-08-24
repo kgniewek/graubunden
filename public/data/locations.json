@@ -853,5 +853,213 @@
     "hike_distance_km": 13.32,
     "elevation_gain_m": 1585,
     "recommended": false
+  },
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    {
+    "filename": "/images/IMG_20250801_202429188_HDR_AE.webp",
+    "location": "to be filled",
+    "short": "to be filled",
+    "province": "to be filled",
+    "country": "to be filled",
+    "date": "01-08-2025",
+    "time": "20:24",
+    "coordinates": [49.163721, 20.187394],
+    "height": 1740.0,
+    "difficulty": "mountain_hiking",
+    "nearest_city": "to be filled",
+    "hike_distance_km": 12.45,
+    "elevation_gain_m": 840,
+    "recommended": true
+  },
+  {
+    "filename": "/images/IMG_20250802_144301243_HDR.webp",
+    "location": "to be filled",
+    "short": "to be filled",
+    "province": "to be filled",
+    "country": "to be filled",
+    "date": "02-08-2025",
+    "time": "14:43",
+    "coordinates": [49.201342, 20.242198],
+    "height": 1551.0,
+    "difficulty": "hiking",
+    "nearest_city": "to be filled",
+    "hike_distance_km": 8.32,
+    "elevation_gain_m": 620,
+    "recommended": false
+  },
+  {
+    "filename": "/images/IMG_20250803_173534943_HDR.webp",
+    "location": "to be filled",
+    "short": "to be filled",
+    "province": "to be filled",
+    "country": "to be filled",
+    "date": "03-08-2025",
+    "time": "17:35",
+    "coordinates": [49.17944, 20.08889],
+    "height": 2499.0,
+    "difficulty": "demanding_mountain_hiking",
+    "nearest_city": "to be filled",
+    "hike_distance_km": 20.12,
+    "elevation_gain_m": 1350,
+    "recommended": true
+  },
+  {
+    "filename": "/images/IMG_20250807_163400102.webp",
+    "location": "to be filled",
+    "short": "to be filled",
+    "province": "to be filled",
+    "country": "to be filled",
+    "date": "07-08-2025",
+    "time": "16:34",
+    "coordinates": [49.23103, 19.98148],
+    "height": 1987.0,
+    "difficulty": "mountain_hiking",
+    "nearest_city": "to be filled",
+    "hike_distance_km": 12.87,
+    "elevation_gain_m": 950,
+    "recommended": false
+  },
+  {
+    "filename": "/images/IMG_20250811_122543953_AE.webp",
+    "location": "to be filled",
+    "short": "to be filled",
+    "province": "to be filled",
+    "country": "to be filled",
+    "date": "11-08-2025",
+    "time": "12:25",
+    "coordinates": [49.1675, 19.9994],
+    "height": 2494.0,
+    "difficulty": "demanding_mountain_hiking",
+    "nearest_city": "to be filled",
+    "hike_distance_km": 14.32,
+    "elevation_gain_m": 1380,
+    "recommended": true
+  },
+  {
+    "filename": "/images/IMG_20250811_125512356_AE.webp",
+    "location": "to be filled",
+    "short": "to be filled",
+    "province": "to be filled",
+    "country": "to be filled",
+    "date": "11-08-2025",
+    "time": "12:55",
+    "coordinates": [49.18025, 20.04963],
+    "height": 1565.0,
+    "difficulty": "hiking",
+    "nearest_city": "to be filled",
+    "hike_distance_km": 9.87,
+    "elevation_gain_m": 620,
+    "recommended": false
+  },
+  {
+    "filename": "/images/IMG_20250811_135334976_HDR_AE.webp",
+    "location": "to be filled",
+    "short": "to be filled",
+    "province": "to be filled",
+    "country": "to be filled",
+    "date": "11-08-2025",
+    "time": "13:53",
+    "coordinates": [49.1845, 20.04512],
+    "height": 2314.0,
+    "difficulty": "mountain_hiking",
+    "nearest_city": "to be filled",
+    "hike_distance_km": 12.15,
+    "elevation_gain_m": 980,
+    "recommended": true
+  },
+  {
+    "filename": "/images/IMG_20250812_165815364_HDR.webp",
+    "location": "to be filled",
+    "short": "to be filled",
+    "province": "to be filled",
+    "country": "to be filled",
+    "date": "12-08-2025",
+    "time": "16:58",
+    "coordinates": [49.2329, 20.0089],
+    "height": 2301.0,
+    "difficulty": "mountain_hiking",
+    "nearest_city": "to be filled",
+    "hike_distance_km": 14.76,
+    "elevation_gain_m": 1050,
+    "recommended": true
+  },
+  {
+    "filename": "/images/IMG_20250812_172905194_HDR_AE.webp",
+    "location": "to be filled",
+    "short": "to be filled",
+    "province": "to be filled",
+    "country": "to be filled",
+    "date": "12-08-2025",
+    "time": "17:29",
+    "coordinates": [49.2324, 20.0237],
+    "height": 2120.0,
+    "difficulty": "demanding_mountain_hiking",
+    "nearest_city": "to be filled",
+    "hike_distance_km": 20.55,
+    "elevation_gain_m": 1500,
+    "recommended": false
+  },
+  {
+    "filename": "/images/IMG_20250815_103558735_AE.webp",
+    "location": "to be filled",
+    "short": "to be filled",
+    "province": "to be filled",
+    "country": "to be filled",
+    "date": "15-08-2025",
+    "time": "10:35",
+    "coordinates": [49.2327, 19.9912],
+    "height": 2055.0,
+    "difficulty": "mountain_hiking",
+    "nearest_city": "to be filled",
+    "hike_distance_km": 10.62,
+    "elevation_gain_m": 870,
+    "recommended": false
+  },
+  {
+    "filename": "/images/IMG_20250817_155838169_HDR_AE.webp",
+    "location": "to be filled",
+    "short": "to be filled",
+    "province": "to be filled",
+    "country": "to be filled",
+    "date": "17-08-2025",
+    "time": "15:58",
+    "coordinates": [49.2336, 20.0081],
+    "height": 2155.0,
+    "difficulty": "mountain_hiking",
+    "nearest_city": "to be filled",
+    "hike_distance_km": 11.83,
+    "elevation_gain_m": 970,
+    "recommended": true
+  },
+  {
+    "filename": "/images/IMG_20250817_184821075_HDR_AE.webp",
+    "location": "to be filled",
+    "short": "to be filled",
+    "province": "to be filled",
+    "country": "to be filled",
+    "date": "17-08-2025",
+    "time": "18:48",
+    "coordinates": [49.2357, 20.0089],
+    "height": 1624.0,
+    "difficulty": "hiking",
+    "nearest_city": "to be filled",
+    "hike_distance_km": 6.95,
+    "elevation_gain_m": 340,
+    "recommended": false
   }
 ]
