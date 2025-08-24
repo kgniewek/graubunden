@@ -76,7 +76,7 @@ export function ClientLayout() {
         alt="Graubünden Gallery"
         className="h-[26px] w-auto flex-shrink-0 hidden dark:inline-block"
       />
-      <span>by Krzysztof Gniewek</span>
+      <span className="text-xs ml-5 font-thin">by Krzysztof Gniewek</span>
     </a>
 
     {/* Right: Language selector + Theme toggle */}
