@@ -62,7 +62,7 @@ export function ClientLayout() {
     <img src="/logo-light-text.svg" alt="Graubünden Gallery" className="h-[26px] w-auto flex-shrink-0 dark:hidden" />
     <img src="/logo-dark-text.svg" alt="Graubünden Gallery" className="h-[26px] w-auto flex-shrink-0 hidden dark:inline-block" />
   </a>
-  <span className="hidden sm:inline-block text-xs font-thin ml-8">by Krzysztof Gniewek</span>
+  <span className="hidden sm:inline-block text-xs font-thin ml-4">by Krzysztof Gniewek</span>
 </div>
 
     {/* Right: Language selector + Theme toggle */}
