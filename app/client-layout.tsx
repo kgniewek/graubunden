@@ -55,32 +55,16 @@ export function ClientLayout() {
 <nav className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
 <div className="flex h-[55px] sm:h-12 w-full items-center justify-between px-1 sm:px-6">
     {/* Left: Logo */}
-<div>
-    <a className="flex items-center space-x-[6px]" href="/">
-      <img
-        src="/logo-light-map.svg"
-        alt="Graubünden Gallery"
-        className="h-[30px] w-auto flex-shrink-0 dark:hidden"
-      />
-      <img
-        src="/logo-dark-map.svg"
-        alt="Graubünden Gallery"
-        className="h-[30px] w-auto flex-shrink-0 hidden dark:inline-block"
-      />
-      <img
-        src="/logo-light-text.svg"
-        alt="Graubünden Gallery"
-        className="h-[26px] w-auto flex-shrink-0 dark:hidden"
-      />
-      <img
-        src="/logo-dark-text.svg"
-        alt="Graubünden Gallery"
-        className="h-[26px] w-auto flex-shrink-0 hidden dark:inline-block"
-      />
-      
-    </a>
-  <span className="hidden sm:inline-block text-xs ml-8 font-thin">by Krzysztof Gniewek</span>
+<div className="flex items-center">
+  <a className="flex items-center space-x-[6px]" href="/">
+    <img src="/logo-light-map.svg" alt="Graubünden Gallery" className="h-[30px] w-auto flex-shrink-0 dark:hidden" />
+    <img src="/logo-dark-map.svg" alt="Graubünden Gallery" className="h-[30px] w-auto flex-shrink-0 hidden dark:inline-block" />
+    <img src="/logo-light-text.svg" alt="Graubünden Gallery" className="h-[26px] w-auto flex-shrink-0 dark:hidden" />
+    <img src="/logo-dark-text.svg" alt="Graubünden Gallery" className="h-[26px] w-auto flex-shrink-0 hidden dark:inline-block" />
+  </a>
+  <span className="hidden sm:inline-block text-xs font-thin ml-8">by Krzysztof Gniewek</span>
 </div>
+
     {/* Right: Language selector + Theme toggle */}
     <div className="flex items-center space-x-1">
       <div className="relative group">
