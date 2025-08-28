@@ -410,7 +410,7 @@ function Sidebar({
   {/* Difficulty */}
   <div className="flex items-start gap-4">
     <label className="text-xs font-medium w-16">
-      <T en="Difficulty" de="Schwierigkeit" it="Difficoltà" fr="Difficulté" />
+              <T en="Difficulty" de="Grad" it="Difficoltà" fr="Difficulté" />
     </label>
     <div className="flex-1">
       <RangeSlider
