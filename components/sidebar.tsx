@@ -444,7 +444,7 @@ fr="Afficher seulement les choix de l'éditeur"
   />
                   </span>
                   <Switch
-                    className="scale-75 -mr-[6px]"
+                    className="scale-75 -mr-[5px]"
                     checked={showOnlyEditorsChoice}
                     onCheckedChange={(checked) => {
                       setShowOnlyEditorsChoice(checked);
@@ -463,7 +463,7 @@ fr="Afficher seulement les choix de l'éditeur"
 />
                   </span>
                   <Switch
-                    className="scale-75"
+                    className="scale-75 -mr-[5px]"
                     checked={showOnlySwitzerland}
                     onCheckedChange={(checked) => {
                       setShowOnlySwitzerland(checked);
@@ -482,7 +482,7 @@ fr="Afficher seulement les choix de l'éditeur"
       />  
                   </span>
                   <Switch
-                    className="scale-75"
+                    className="scale-75 -mr-[5px]"
                     checked={showOnlyGraubunden}
                     onCheckedChange={(checked) => {
                       setShowOnlyGraubunden(checked);
