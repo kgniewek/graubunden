@@ -435,7 +435,7 @@ function Sidebar({
 
               <div className="space-y-2 mt-3">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-medium">
+                  <span className="text-[13px] font-medium">
 <T
   en="Show only Editor's Choice locations"
   de="Nur Editor's Choice Standorte anzeigen"
@@ -444,7 +444,7 @@ fr="Afficher seulement les choix de l'éditeur"
   />
                   </span>
                   <Switch
-                    className="scale-80"
+                    className="scale-75"
                     checked={showOnlyEditorsChoice}
                     onCheckedChange={(checked) => {
                       setShowOnlyEditorsChoice(checked);
@@ -454,7 +454,7 @@ fr="Afficher seulement les choix de l'éditeur"
                 </div>
 
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-medium">
+                  <span className="text-[13px] font-medium">
 <T
   en="Show locations only within Switzerland"
   de="Nur Standorte innerhalb der Schweiz anzeigen"
@@ -463,7 +463,7 @@ fr="Afficher seulement les choix de l'éditeur"
 />
                   </span>
                   <Switch
-                    className="scale-80"
+                    className="scale-75"
                     checked={showOnlySwitzerland}
                     onCheckedChange={(checked) => {
                       setShowOnlySwitzerland(checked);
@@ -482,7 +482,7 @@ fr="Afficher seulement les choix de l'éditeur"
       />  
                   </span>
                   <Switch
-                    className="scale-80"
+                    className="scale-75"
                     checked={showOnlyGraubunden}
                     onCheckedChange={(checked) => {
                       setShowOnlyGraubunden(checked);
