@@ -366,7 +366,7 @@ function Sidebar({
   <Button
     variant="ghost"
     size="sm"
-    className="h-[24px] px-2 text-xs border border-border bg-muted text-foreground hover:bg-muted/80 transition-colors duration-150"
+    className="h-[23px] px-2 text-xs border border-border bg-muted text-foreground hover:bg-muted/80 transition-colors duration-150"
     onClick={handleResetFilters}
   >
     <RotateCcw className="h-3 w-3 mr-1" />
