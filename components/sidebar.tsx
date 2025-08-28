@@ -250,6 +250,17 @@ function Sidebar({
     }
   };
 
+
+  const filtersChanged =
+  showOnlyEditorsChoice !== false ||
+  showOnlySwitzerland !== false ||
+  showOnlyGraubunden !== false ||
+  heightRange[0] !== 100 ||
+  heightRange[1] !== 4000 ||
+  difficultyRange[0] !== 0 ||
+  difficultyRange[1] !== 4;
+
+
   return (
     <div className={`relative flex flex-col border-r  bg-background ${className}`}>
 <div className=" sidebar-scroll flex-1 overflow-auto scrollbar-thin scrollbar-track-transparent scrollbar-thumb-black/40 hover:scrollbar-thumb-black/60 pt-3 pb-6">
@@ -351,17 +362,18 @@ function Sidebar({
   />
               </h3>
             </button>
-            {isFiltersExpanded && (
-              <Button
-                variant="ghost"
-                size="sm" 
-                className="h-7 px-2 text-xs border border-border bg-muted text-foreground hover:bg-muted/80 transition-colors duration-150"
-                onClick={handleResetFilters}
-              >
-                <RotateCcw className="h-3 w-3 mr-1" />
-                <T en="Reset" de="Zurücksetzen" it="Ripristina" fr="Réinitialiser" />
-              </Button>
-            )}
+            {isFiltersExpanded && filtersChanged && (
+  <Button
+    variant="ghost"
+    size="sm"
+    className="h-7 px-2 text-xs border border-border bg-muted text-foreground hover:bg-muted/80 transition-colors duration-150"
+    onClick={handleResetFilters}
+  >
+    <RotateCcw className="h-3 w-3 mr-1" />
+    <T en="Reset" de="Zurücksetzen" it="Ripristina" fr="Réinitialiser" />
+  </Button>
+)}
+
           </div>
 
           {isFiltersExpanded && (
