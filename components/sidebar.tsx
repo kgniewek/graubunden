@@ -444,7 +444,7 @@ fr="Afficher seulement les choix de l'éditeur"
   />
                   </span>
                   <Switch
-                    className="scale-75"
+                    className="scale-75 -mr-[6px]"
                     checked={showOnlyEditorsChoice}
                     onCheckedChange={(checked) => {
                       setShowOnlyEditorsChoice(checked);
