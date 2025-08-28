@@ -400,7 +400,7 @@ function Sidebar({
         minGap={200}
         className="w-full"
       />
-      <div className="flex justify-between text-[10px] text-muted-foreground mt-[3px]">
+      <div className="flex justify-between text-[12px] text-muted-foreground mt-[5px]">
         <span>{heightRange[0]}m</span>
         <span>{heightRange[1]}m</span>
       </div>
@@ -424,7 +424,7 @@ function Sidebar({
         }}
         className="w-full"
       />
-      <div className="flex justify-between text-[10px] text-muted-foreground mt-[3px]">
+      <div className="flex justify-between text-[12px] text-muted-foreground mt-[5px]">
         <span>{difficultyLabels[difficultyKeys[difficultyRange[0]]][language]}</span>
         <span>{difficultyLabels[difficultyKeys[difficultyRange[1]]][language]}</span>
       </div>
