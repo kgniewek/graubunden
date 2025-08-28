@@ -435,16 +435,16 @@ function Sidebar({
 
               <div className="space-y-2 mt-3">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-medium">
-                    <T
-                      en="Show only Editor's Choice locations"
-                      de="Nur Editor's Choice Standorte anzeigen"
-                      it="Mostra solo le località scelte dall'editore"
-                      fr="Afficher uniquement les emplacements du choix de l'éditeur"
-                    />
+                  <span className="text-sm font-medium">
+<T
+  en="Show only Editor's Choice locations"
+  de="Nur Editor's Choice Standorte anzeigen"
+  it="Mostra solo le località scelte dall'editore"
+fr="Afficher seulement les choix de l'éditeur"
+  />
                   </span>
                   <Switch
-                    className="scale-75"
+                    className="scale-90"
                     checked={showOnlyEditorsChoice}
                     onCheckedChange={(checked) => {
                       setShowOnlyEditorsChoice(checked);
@@ -454,16 +454,16 @@ function Sidebar({
                 </div>
 
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-medium">
-                     <T
-        en="Show locations only within Switzerland"
-        de="Nur Standorte innerhalb der Schweiz anzeigen"
-        it="Mostra solo località in Svizzera"
-        fr="Afficher uniquement les emplacements en Suisse"
-      />
+                  <span className="text-sm font-medium">
+<T
+  en="Show locations only within Switzerland"
+  de="Nur Standorte innerhalb der Schweiz anzeigen"
+  it="Mostra solo località in Svizzera"
+  fr="Afficher uniquement les lieux en Suisse"
+/>
                   </span>
                   <Switch
-                    className="scale-75"
+                    className="scale-90"
                     checked={showOnlySwitzerland}
                     onCheckedChange={(checked) => {
                       setShowOnlySwitzerland(checked);
@@ -473,16 +473,16 @@ function Sidebar({
                 </div>
 
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-medium">
-                      <T
+                  <span className="text-sm font-medium">
+                <T
         en="Show locations only within Graubünden"
         de="Nur Standorte innerhalb Graubündens anzeigen"
         it="Mostra solo località nei Grigioni"
-        fr="Afficher uniquement les emplacements dans les Grisons"
-      />
+  fr="Afficher uniquement les lieux dans les Grisons"
+      />  
                   </span>
                   <Switch
-                    className="scale-75"
+                    className="scale-90"
                     checked={showOnlyGraubunden}
                     onCheckedChange={(checked) => {
                       setShowOnlyGraubunden(checked);
