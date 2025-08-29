@@ -125,7 +125,7 @@ export function ClientLayout() {
         {/* Main content */}
         <div className="flex flex-1 overflow-hidden">
           <Sidebar 
-            className="w-[400px] hidden md:flex" 
+            className="w-[500px] hidden md:flex" 
             selectedMapStyle={selectedMapStyle}
             onMapStyleChange={setSelectedMapStyle}
             onEditorsChoiceChange={setShowOnlyEditorsChoice}
