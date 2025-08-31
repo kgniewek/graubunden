@@ -39,6 +39,11 @@ function Sidebar({
   const [showOnlySwitzerland, setShowOnlySwitzerland] = useState(false);
   const [showOnlyGraubunden, setShowOnlyGraubunden] = useState(false);
   const [isFiltersExpanded, setIsFiltersExpanded] = useState(true);
+
+
+  const [selectedOption, setSelectedOption] = useState<'all' | 'switzerland' | 'graubunden'>('all');
+
+
   const [selectedCountries, setSelectedCountries] = useState<string[]>([
     'Switzerland',
     'Italy',
@@ -154,9 +159,6 @@ function Sidebar({
 
 
   const filtersChanged =
-  showOnlyEditorsChoice !== false ||
-  showOnlySwitzerland !== false ||
-  showOnlyGraubunden !== false ||
   heightRange[0] !== 100 ||
   heightRange[1] !== 4000 ||
   difficultyRange[0] !== 0 ||
@@ -280,9 +282,9 @@ function Sidebar({
 
           {isFiltersExpanded && (
             <>
-              <div className="flex flex-col gap-3">
+              <div className="flex flex-col gap-5">
   {/* Height Range */}
-  <div className="flex items-start gap-4">
+  <div className="flex items-start gap-4 mt-3">
     <label className="text-xs font-medium w-16">
       <T en="Height" de="Höhe" it="Altezza" fr="Hauteur" />
     </label>
@@ -335,64 +337,120 @@ function Sidebar({
 </div>
 
 
-              <div className="space-y-2 mt-3">
-                <div className="flex items-center justify-between">
-                  <span className="text-[13px] font-medium">
-<T
-  en="Show only Editor's Choice locations"
-  de="Nur Editor's Choice Standorte anzeigen"
-  it="Mostra solo le località scelte dall'editore"
-fr="Afficher seulement les choix de l'éditeur"
-  />
-                  </span>
-                  <Switch
-                    className="scale-75 -mr-[5px]"
-                    checked={showOnlyEditorsChoice}
-                    onCheckedChange={(checked) => {
-                      setShowOnlyEditorsChoice(checked);
-                      onEditorsChoiceChange?.(checked);
-                    }}
-                  />
-                </div>
 
-                <div className="flex items-center justify-between">
-                  <span className="text-[13px] font-medium">
-<T
-  en="Show locations only within Switzerland"
-  de="Nur Standorte innerhalb der Schweiz anzeigen"
-  it="Mostra solo località in Svizzera"
-  fr="Afficher uniquement les lieux en Suisse"
-/>
-                  </span>
-                  <Switch
-                    className="scale-75 -mr-[5px]"
-                    checked={showOnlySwitzerland}
-                    onCheckedChange={(checked) => {
-                      setShowOnlySwitzerland(checked);
-                      onSwitzerlandChange?.(checked);
-                    }}
-                  />
-                </div>
 
-                <div className="flex items-center justify-between">
-                  <span className="text-[13px] font-medium">
-                <T
-        en="Show locations only within Graubünden"
-        de="Nur Standorte innerhalb Graubündens anzeigen"
-        it="Mostra solo località nei Grigioni"
-  fr="Afficher uniquement les lieux dans les Grisons"
-      />  
-                  </span>
-                  <Switch
-                    className="scale-75 -mr-[5px]"
-                    checked={showOnlyGraubunden}
-                    onCheckedChange={(checked) => {
-                      setShowOnlyGraubunden(checked);
-                      onGraubundenChange?.(checked);
-                    }}
-                  />
+
+
+
+{/*                <div className="flex items-center justify-between  mt-3">*/}
+{/*                  <span className="text-[13px] font-medium">*/}
+{/*<T*/}
+{/*  en="Show only Editor's Choice locations"*/}
+{/*  de="Nur Editor's Choice Standorte anzeigen"*/}
+{/*  it="Mostra solo le località scelte dall'editore"*/}
+{/*fr="Afficher seulement les choix de l'éditeur"*/}
+{/*  />*/}
+{/*                  </span>*/}
+{/*                  <Switch*/}
+{/*                    className="scale-75 -mr-[5px]"*/}
+{/*                    checked={showOnlyEditorsChoice}*/}
+{/*                    onCheckedChange={(checked) => {*/}
+{/*                      setShowOnlyEditorsChoice(checked);*/}
+{/*                      onEditorsChoiceChange?.(checked);*/}
+{/*                    }}*/}
+{/*                  />*/}
+{/*                </div>*/}
+
+
+
+
+
+
+
+
+
+
+              <div className="flex items-center gap-4 mt-4 pb-2 pt-1">
+                {/* Label on the left */}
+                <label className="text-xs font-medium w-16 flex items-center h-full">
+                  <T en="Area" de="Gebiet" it="Area" fr="Zone" />
+                </label>
+
+                {/* Buttons on the right */}
+                <div className="flex-1 flex justify-end">
+                  <div className="relative w-[373px] h-10 bg-muted rounded-full flex border border-border px-2">
+                    {/* Indicator */}
+                    <div
+                        className="absolute top-1.5 mt-[-1px] left-2 h-7 w-[116px] bg-foreground rounded-full shadow-lg transition-all duration-300"
+                        style={{
+                          transform: `translateX(${
+                              selectedOption === 'all'
+                                  ? '0px'
+                                  : selectedOption === 'switzerland'
+                                      ? '120px'
+                                      : '240px'
+                          })`,
+                        }}
+                    />
+
+                    {/* Button 1 - Show all */}
+                    <button
+                        onClick={() => {
+                          setSelectedOption('all');
+                          setShowOnlySwitzerland(false);
+                          setShowOnlyGraubunden(false);
+                          onSwitzerlandChange?.(false);
+                          onGraubundenChange?.(false);
+                        }}
+                        className={`flex-none w-[120px] relative z-10 flex items-center justify-center font-medium text-sm transition-colors duration-200 ${
+                            selectedOption === 'all' ? 'text-background' : 'text-muted-foreground'
+                        }`}
+                    >
+                      <T en="Show all" de="Alle anzeigen" it="Mostra tutto" fr="Tout afficher" />
+                    </button>
+
+                    {/* Button 2 - Switzerland */}
+                    <button
+                        onClick={() => {
+                          setSelectedOption('switzerland');
+                          setShowOnlySwitzerland(true);
+                          setShowOnlyGraubunden(false);
+                          onSwitzerlandChange?.(true);
+                          onGraubundenChange?.(false);
+                        }}
+                        className={`flex-none w-[120px] relative z-10 flex items-center justify-center font-medium text-sm transition-colors duration-200 ${
+                            selectedOption === 'switzerland' ? 'text-background' : 'text-muted-foreground'
+                        }`}
+                    >
+                      <T en="Switzerland" de="Schweiz" it="Svizzera" fr="Suisse" />
+                    </button>
+
+                    {/* Button 3 - Graubünden */}
+                    <button
+                        onClick={() => {
+                          setSelectedOption('graubunden');
+                          setShowOnlySwitzerland(false);
+                          setShowOnlyGraubunden(true);
+                          onSwitzerlandChange?.(false);
+                          onGraubundenChange?.(true);
+                        }}
+                        className={`flex-none w-[120px] relative z-10 flex items-center justify-center font-medium text-sm transition-colors duration-200 ${
+                            selectedOption === 'graubunden' ? 'text-background' : 'text-muted-foreground'
+                        }`}
+                    >
+                      <T en="Graubünden" de="Graubünden" it="Grigioni" fr="Grisons" />
+                    </button>
+                  </div>
                 </div>
               </div>
+
+
+
+
+
+
+
+
             </>
           )}
         </div>
