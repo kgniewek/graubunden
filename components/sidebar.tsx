@@ -12,8 +12,6 @@ import type { Location } from '@/types/location';
 
 interface SidebarProps {
   className?: string;
-  selectedMapStyle?: string;
-  onMapStyleChange?: (style: string) => void;
   onEditorsChoiceChange?: (showOnly: boolean) => void;
   onSwitzerlandChange?: (showOnly: boolean) => void;
   onGraubundenChange?: (showOnly: boolean) => void;
@@ -26,9 +24,7 @@ interface SidebarProps {
 
 
 function Sidebar({ 
-  className, 
-  selectedMapStyle, 
-  onMapStyleChange, 
+  className,
   onEditorsChoiceChange,
   onSwitzerlandChange,
   onGraubundenChange,
@@ -39,21 +35,16 @@ function Sidebar({
   onLocationHover
 }: SidebarProps) {
   const [heightRange, setHeightRange] = useState<[number, number]>([100, 4000]);
-  const [mounted, setMounted] = useState(false);
   const [showOnlyEditorsChoice, setShowOnlyEditorsChoice] = useState(false);
   const [showOnlySwitzerland, setShowOnlySwitzerland] = useState(false);
   const [showOnlyGraubunden, setShowOnlyGraubunden] = useState(false);
   const [isFiltersExpanded, setIsFiltersExpanded] = useState(true);
-  const [isMapStyleExpanded, setIsMapStyleExpanded] = useState(true);
-
   const [selectedCountries, setSelectedCountries] = useState<string[]>([
     'Switzerland',
     'Italy',
     'Liechtenstein',
     'Austria',
   ]);
-
-
   const difficultyKeys = [
     'hiking',
     'mountain_hiking',
@@ -61,16 +52,8 @@ function Sidebar({
     'alpine_hiking',
     'difficult_alpine_hiking',
   ];
-
   const [difficultyRange, setDifficultyRange] = useState<[number, number]>([0, 4]);
-
-
   const { language } = useLocale();
-  const { theme, setTheme } = useTheme();
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   const handleResetFilters = () => {
     setShowOnlyEditorsChoice(false);
@@ -87,88 +70,7 @@ function Sidebar({
     onDifficultyRangeChange?.([0, 4]);
   };
 
- const mapStyles = [
-  {
-    id: 'light-simple',
-    name: {
-      en: 'Light Simple',
-      de: 'Hell Einfach',
-      it: 'Semplice Chiaro',
-      fr: 'Simple Clair'
-    },
-    image: '/map-simple-light.webp'
-  },
-  {
-    id: 'dark-simple',
-    name: {
-      en: 'Dark Simple',
-      de: 'Dunkel Einfach',
-      it: 'Semplice Scuro',
-      fr: 'Simple Sombre'
-    },
-    image: '/map-simple-dark.webp'
-  },
-  {
-    id: 'satellite',
-    name: {
-      en: 'Satellite',
-      de: 'Satellit',
-      it: 'Satellite',
-      fr: 'Satellite'
-    },
-    image: '/map-satelite.webp'
-  },
-  {
-    id: 'terrain',
-    name: {
-      en: 'Terrain',
-      de: 'Gelände',
-      it: 'Terreno',
-      fr: 'Terrain'
-    },
-    image: '/map-terrain.webp'
-  },
-  {
-    id: 'street',
-    name: {
-      en: 'Street',
-      de: 'Straße',
-      it: 'Strada',
-      fr: 'Rue'
-    },
-    image: '/map-street.webp'
-  },
-  {
-    id: 'swisstopo',
-    name: {
-      en: 'SwissTopo',
-      de: 'SwissTopo',
-      it: 'SwissTopo',
-      fr: 'SwissTopo'
-    },
-    image: '/map-swisstopo.webp'
-  }
-];
 
-
-  const handleMapStyleChange = (styleId: string) => {
-    if (styleId === 'light-simple') {
-      setTheme('light');
-      onMapStyleChange?.('simple');
-    } else if (styleId === 'dark-simple') {
-      setTheme('dark');
-      onMapStyleChange?.('simple');
-    } else {
-      onMapStyleChange?.(styleId);
-    }
-  };
-
-  const getActiveStyle = () => {
-    if (selectedMapStyle === 'simple') {
-      return theme === 'dark' ? 'dark-simple' : 'light-simple';
-    }
-    return selectedMapStyle;
-  };
 
   const difficultyLabels: Record<string, Record<string, string>> = {
     hiking: {
@@ -495,81 +397,6 @@ fr="Afficher seulement les choix de l'éditeur"
           )}
         </div>
       </div>
-    
-      <div className="w-full h-px bg-border" />
-    
-      {/* Map Style Section - Collapsible */}
-      {mounted && (
-        <div className="px-6 py-3 space-y-3">
-          <div className="flex items-center justify-between">
-            <button
-              onClick={() => setIsMapStyleExpanded(!isMapStyleExpanded)}
-              className="flex items-center space-x-2 hover:text-primary transition-colors"
-            >
-              <ChevronDown className={`h-5 w-5 transition-transform ${isMapStyleExpanded ? '' : '-rotate-90'}`} />
-              <h3 className="font-bold text-sm">
-  <T 
-    en="Map Source" 
-    de="Kartenquelle" 
-    it="Fonte della mappa" 
-    fr="Source de la carte" 
-  />           
-              </h3>
-            </button>
-          </div>
-
-    {isMapStyleExpanded && (
-  <div className="grid grid-cols-3 gap-2">
-    {mapStyles.map((style) => {
-      const isActive = getActiveStyle() === style.id;
-      return (
-        <button
-          key={style.id}
-          onClick={() => handleMapStyleChange(style.id)}
-          className={`relative aspect-[3/2] rounded-md border-2 transition-all duration-200 overflow-hidden group ${
-            isActive
-              ? 'border-primary'
-              : 'border-border hover:border-primary/50'
-          }`}
-        >
-          {/* Image Container */}
-          <div className="absolute top-0 left-0 right-0 bottom-[20px]"> 
-            <img
-              src={style.image}
-              alt={style.name[language]}
-              className="w-full h-full object-cover object-top transition-transform duration-300 group-hover:scale-110"
-            />
-            <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors duration-200" />
-            
-            {/* Check icon centered in image area only */}
-            {isActive && (
-              <div className="absolute inset-0 flex items-center justify-center z-10">
-                <div className="bg-primary text-primary-foreground rounded-full p-0.5">
-                  <Check className="h-4 w-4" />
-                </div>
-              </div>
-            )}
-          </div>
-
-          {/* Label */}
-          <div
-            className={`absolute bottom-0 left-0 right-0 px-1 py-[3px] z-10 text-xs font-medium text-center truncate leading-tight transition-all duration-200
-            ${
-              isActive
-                ? 'bg-black text-white dark:bg-white dark:text-black'
-                : 'bg-white/80 text-black dark:bg-black dark:text-white'
-            }`}
-          >
-            {style.name[language]}
-          </div>
-        </button>
-      );
-    })}
-  </div>
-)}
-
-        </div>
-      )}
     </div>
   );
 }

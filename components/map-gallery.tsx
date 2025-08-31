@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import dynamic from 'next/dynamic';
 import { useTheme } from 'next-themes';
-import { Loader2 } from 'lucide-react';
+import { Loader2, Plus, Minus, Layers, ChevronUp, Check  } from 'lucide-react';
 import * as Leaflet from 'leaflet';
 
 import type { Location } from '@/types/location';
@@ -38,6 +38,8 @@ interface MapGalleryProps {
   difficultyRange?: [number, number];
   heightRange?: [number, number];
   onVisibleLocationsChange?: (locations: Location[]) => void;
+  onMapStyleChange?: (styleId: string) => void;
+
 }
 
 export default function MapGallery({
@@ -53,13 +55,82 @@ export default function MapGallery({
   difficultyRange = [0, 4],
   heightRange = [100, 4000],
   onVisibleLocationsChange,
-}: MapGalleryProps) {
+                                     onMapStyleChange,
+                                   }: MapGalleryProps) {
   const [locations, setLocations] = useState<Location[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [mapKey, setMapKey] = useState(0);
   const [visibleLocationIds, setVisibleLocationIds] = useState<Set<string>>(new Set());
   const mapRef = useRef<any>(null);
-  const { theme } = useTheme();
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [mapStyle, setMapStyle] = useState<string>(selectedMapStyle);
+  const { theme, setTheme } = useTheme();
+
+
+
+  const getActiveStyle = () => {
+    if (mapStyle === 'simple') {
+      return theme === 'dark' ? 'dark-simple' : 'light-simple';
+    }
+    return mapStyle;
+  };
+
+
+  const toggleDropdown = () => {
+    setIsDropdownOpen((prev) => !prev);
+  };
+
+  const mapOptions = [
+    {
+      id: 'light-simple',
+      label: { en: 'Light Simple', de: 'Hell Einfach', it: 'Semplice Chiaro', fr: 'Simple Clair' },
+      image: '/map-simple-light.webp'
+    },
+    {
+      id: 'dark-simple',
+      label: { en: 'Dark Simple', de: 'Dunkel Einfach', it: 'Semplice Scuro', fr: 'Simple Sombre' },
+      image: '/map-simple-dark.webp'
+    },
+    {
+      id: 'satellite',
+      label: { en: 'Satellite', de: 'Satellit', it: 'Satellite', fr: 'Satellite' },
+      image: '/map-satelite.webp'
+    },
+    {
+      id: 'terrain',
+      label: { en: 'Terrain', de: 'Gelände', it: 'Terreno', fr: 'Terrain' },
+      image: '/map-terrain.webp'
+    },
+    {
+      id: 'street',
+      label: { en: 'Street', de: 'Straße', it: 'Strada', fr: 'Rue' },
+      image: '/map-street.webp'
+    },
+    {
+      id: 'swisstopo',
+      label: { en: 'SwissTopo', de: 'SwissTopo', it: 'SwissTopo', fr: 'SwissTopo' },
+      image: '/map-swisstopo.webp'
+    },
+  ];
+
+  const handleMapOptionClick = (optionId: string) => {
+    setMapStyle(optionId); // local map style for dropdown UI
+    setIsDropdownOpen(false);
+
+    if (optionId === 'light-simple') {
+      setTheme('light');
+      onMapStyleChange?.('simple'); // notify parent map component
+    } else if (optionId === 'dark-simple') {
+      setTheme('dark');
+      onMapStyleChange?.('simple'); // notify parent map component
+    } else {
+      onMapStyleChange?.(optionId);
+    }
+  };
+
+
+
+
 
   // Filter locations based on Editor's Choice setting
   const filteredLocations = React.useMemo(() => {
@@ -206,13 +277,12 @@ export default function MapGallery({
     }
   }, [theme]);
 
-  // Get tile layer URL based on selected map style
   const getTileLayerUrl = () => {
-    switch (selectedMapStyle) {
+    switch (mapStyle) {
       case 'simple':
-        return theme === 'dark' 
-          ? "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
-          : "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png";
+        return theme === 'dark'
+            ? "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+            : "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png";
       case 'satellite':
         return "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}";
       case 'terrain':
@@ -222,9 +292,9 @@ export default function MapGallery({
       case 'swisstopo':
         return "https://wmts.geo.admin.ch/1.0.0/ch.swisstopo.pixelkarte-farbe/default/current/3857/{z}/{x}/{y}.jpeg";
       default:
-        return theme === 'dark' 
-          ? "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
-          : "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png";
+        return theme === 'dark'
+            ? "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+            : "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png";
     }
   };
 
@@ -274,6 +344,7 @@ export default function MapGallery({
   key={mapKey}
   center={[46.6, 9.8]}
   zoom={9}
+  zoomControl={false}
   style={{ height: '100%', width: '100%' }}
   className={`z-0 leaflet-container ${theme === 'dark' ? 'map-bg-dark' : 'map-bg-light'}`}
        whenReady={handleMapReady}
@@ -295,7 +366,124 @@ export default function MapGallery({
           />
         ))}
       </MapContainer>
-      
+
+
+
+
+
+
+
+      <div className="absolute bottom-6 right-6 z-[1000] flex items-end space-x-3">
+        {/* Anchor wrapper: inline-flex ensures wrapper width matches button width */}
+        <div className="relative inline-flex items-center justify-center">
+          {/* Dropdown (kept mounted so close animation runs) */}
+          <div
+              className={
+                `absolute bottom-full mb-8 left-1/2 -translate-x-1/2
+         w-80 bg-background border border-border rounded-xl shadow-lg p-3 origin-bottom
+         transition-[opacity,transform] duration-200 ease-out
+         ${isDropdownOpen
+                    ? 'opacity-100 translate-y-0 scale-100 pointer-events-auto'
+                    : 'opacity-0 translate-y-3 scale-95 pointer-events-none'}`
+              }
+          >
+            {mapOptions.map((option) => {
+              const isActive = getActiveStyle() === option.id;
+              const image = option.image;
+
+              return (
+                  <button
+                      key={option.id}
+                      onClick={() => handleMapOptionClick(option.id)}
+                      className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg hover:bg-muted transition-all duration-200 group ${
+                          isActive ? 'bg-muted/50 font-semibold' : 'bg-background'
+                      }`}
+                  >
+                    {image && (
+                        <div className="flex-shrink-0 w-24 h-16 overflow-hidden rounded-lg">
+                          <img
+                              src={image}
+                              alt={option.label[useLocale().language as keyof typeof option.label]}
+                              className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                          />
+                        </div>
+                    )}
+
+                    <span className="flex-1 text-left text-base truncate">
+              <T
+                  en={option.label.en}
+                  de={option.label.de}
+                  it={option.label.it}
+                  fr={option.label.fr}
+              />
+            </span>
+
+                    {isActive && <Check className="w-5 h-5 text-primary ml-auto" />}
+                  </button>
+              );
+            })}
+
+            <div
+                className={`
+    absolute top-full left-1/2 -translate-x-1/2 mt-[-8px]
+    w-[18px] h-[18px]
+    rotate-45
+    bg-background border border-b-border border-r-border border-t-transparent border-l-transparent
+  `}
+            />
+
+
+          </div>
+
+          {/* Toggle Button (anchor) */}
+          <button
+              onClick={toggleDropdown}
+              className="flex items-center gap-2 px-4 h-12 bg-background hover:bg-muted text-foreground border border-border rounded-full shadow-lg transition-all"
+          >
+            <Layers className="w-6 h-6" />
+            <span className="text-sm font-medium">
+        <T
+            en="Change map view"
+            de="Kartenansicht ändern"
+            it="Cambia vista mappa"
+            fr="Changer la vue de la carte"
+        />
+      </span>
+            <ChevronUp
+                className={`w-4 h-4 ml-1 transition-transform duration-200 ${
+                    isDropdownOpen ? 'rotate-180' : 'rotate-0'
+                }`}
+            />
+          </button>
+        </div>
+
+        {/* Zoom Controls */}
+        <div className="flex rounded-full shadow-lg overflow-hidden border border-border">
+          <button
+              onClick={() => mapRef.current?.zoomIn()}
+              className="flex items-center justify-center w-12 h-12 bg-background hover:bg-muted transition-colors"
+          >
+            <Plus className="w-6 h-6 text-foreground" />
+          </button>
+          <div className="w-px bg-border" />
+          <button
+              onClick={() => mapRef.current?.zoomOut()}
+              className="flex items-center justify-center w-12 h-12 bg-background hover:bg-muted transition-colors"
+          >
+            <Minus className="w-6 h-6 text-foreground" />
+          </button>
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+
+
       {/* SwissTopo Attribution Strip */}
       {selectedMapStyle === 'swisstopo' && (
         <div className="absolute bottom-2 left-2 z-[1000]">

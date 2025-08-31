@@ -246,3 +246,18 @@
 .dark .sidebar-scroll {
   scrollbar-color: rgba(255,255,255,0.2) transparent;
 }
+
+
+
+
+
+
+
+
+
+
+
+
+.leaflet-control-attribution {
+  display: none !important;
+}

@@ -12,7 +12,7 @@ const config: Config = {
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+            'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
       borderRadius: {
         lg: 'var(--radius)',
@@ -62,29 +62,41 @@ const config: Config = {
         },
       },
       keyframes: {
+        // --- existing accordion animations ---
         'accordion-down': {
-          from: {
-            height: '0',
-          },
-          to: {
-            height: 'var(--radix-accordion-content-height)',
-          },
+          from: { height: '0' },
+          to: { height: 'var(--radix-accordion-content-height)' },
         },
         'accordion-up': {
-          from: {
-            height: 'var(--radix-accordion-content-height)',
-          },
-          to: {
-            height: '0',
-          },
+          from: { height: 'var(--radix-accordion-content-height)' },
+          to: { height: '0' },
         },
+
+        // --- updated dropdown animations (a bit stronger but still subtle) ---
+        'slide-fade-in': {
+          '0%': { opacity: '0', transform: 'translateY(12px) scale(0.97)' },
+          '100%': { opacity: '1', transform: 'translateY(0) scale(1)' },
+        },
+        'slide-fade-out': {
+          '0%': { opacity: '1', transform: 'translateY(0) scale(1)' },
+          '100%': { opacity: '0', transform: 'translateY(12px) scale(0.97)' },
+        },
+
+
       },
       animation: {
+        // --- existing ---
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
+
+        // --- new --- (used if you prefer animation classes instead of transitions)
+        'slide-fade-in': 'slide-fade-in 200ms cubic-bezier(.04,.7,.28,1) forwards',
+        'slide-fade-out': 'slide-fade-out 180ms ease-in forwards',
+
       },
     },
   },
   plugins: [require('tailwindcss-animate')],
 };
+
 export default config;
