@@ -60,7 +60,7 @@ export function ClientLayout() {
 <nav className="sticky top-0 z-50 w-full border-b border-border bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
 <div className="flex h-[55px] sm:h-12 w-full items-center justify-between px-1 sm:px-6">
     {/* Left: Logo */}
-<div className="flex items-center">
+<div className="flex   select-none items-center">
   <a className="flex items-center space-x-[6px]" href="/">
     <img src="/logo-light-map.svg" alt="Graubünden Gallery" className="h-[30px] w-auto flex-shrink-0 dark:hidden" />
     <img src="/logo-dark-map.svg" alt="Graubünden Gallery" className="h-[30px] w-auto flex-shrink-0 hidden dark:inline-block" />
@@ -71,7 +71,7 @@ export function ClientLayout() {
 </div>
 
     {/* Right: Language selector + Theme toggle */}
-    <div className="flex items-center space-x-[10px] pr-3 sm:pr-0">
+    <div className="flex items-center select-none space-x-[10px] pr-3 sm:pr-0">
       <div className="relative group">
         <Button variant="ghost" className="h-9 px-2 sm:px-3 flex items-center space-x-2">
           <img

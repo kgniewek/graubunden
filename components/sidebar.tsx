@@ -455,7 +455,7 @@ function Sidebar({
 
 
               {/* Two-option switcher */}
-              <div className="flex items-center gap-4 pb-2">
+              <div className="flex items-center gap-4 pb-2  select-none ">
                 {/* Label on the left */}
                 <label className="text-xs font-medium w-16 flex items-center h-full">
                   <T en="Filter" de="Filter" it="Filtro" fr="Filtre" />

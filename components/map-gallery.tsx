@@ -376,7 +376,7 @@ export default function MapGallery({
 
 
 
-      <div className="absolute bottom-6 right-6 z-[1000] hidden md:flex items-end space-x-3">
+      <div className="absolute  select-none  bottom-6 right-6 z-[1000] hidden md:flex items-end space-x-3">
         {/* Anchor wrapper: inline-flex ensures wrapper width matches button width */}
         <div className="relative inline-flex items-center justify-center">
           {/* Dropdown (kept mounted so close animation runs) */}
@@ -461,7 +461,7 @@ export default function MapGallery({
         </div>
 
         {/* Zoom Controls */}
-        <div className="flex rounded-full shadow-lg overflow-hidden border border-border">
+        <div className="flex rounded-full  select-none shadow-lg overflow-hidden border border-border">
           <button
               onClick={() => mapRef.current?.zoomIn()}
               className="flex items-center justify-center w-12 h-12 bg-background hover:bg-muted transition-colors"
