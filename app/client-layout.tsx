@@ -71,7 +71,7 @@ export function ClientLayout() {
 </div>
 
     {/* Right: Language selector + Theme toggle */}
-    <div className="flex items-center space-x-[8px] pr-3">
+    <div className="flex items-center space-x-[10px] pr-3">
       <div className="relative group">
         <Button variant="ghost" className="h-9 px-2 sm:px-3 flex items-center space-x-2">
           <img
@@ -107,7 +107,7 @@ export function ClientLayout() {
         className="h-9 w-9 px-2"
         onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
       >
-        <Sun className="h-[26px] w-[26px] sm:h-[21px] sm:w-[21px] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+        <Sun className="absolute h-[26px] w-[26px] sm:h-[21px] sm:w-[21px] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
         <Moon className="absolute h-[26px] w-[26px] sm:h-[21px] sm:w-[21px]  rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
         <span className="sr-only">
           <T en="Toggle theme" de="Thema wechseln" it="Cambia tema" fr="Changer de thème" />
@@ -119,7 +119,7 @@ export function ClientLayout() {
                 className="h-9 w-9 px-2 md:hidden  "
                 onClick={() => setIsMobileSettingsOpen(true)}
               >
-                <Settings className="h-[28px] w-[28px] scale-110" />
+                <Settings className="absolute h-[24px] w-[24px] scale-100 mt-[1px]" />
               </Button>
     </div>
   </div>
