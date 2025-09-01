@@ -39,6 +39,7 @@ function Sidebar({
   const [showOnlySwitzerland, setShowOnlySwitzerland] = useState(false);
   const [showOnlyGraubunden, setShowOnlyGraubunden] = useState(false);
   const [isFiltersExpanded, setIsFiltersExpanded] = useState(true);
+  const [selectedOptionTwo, setSelectedOptionTwo] = useState<'all' | 'editorsChoice'>('all');
 
 
   const [selectedOption, setSelectedOption] = useState<'all' | 'switzerland' | 'graubunden'>('all');
@@ -370,7 +371,7 @@ function Sidebar({
 
 
 
-              <div className="flex items-center gap-4 mt-4 pb-2 pt-1">
+              <div className="flex items-center gap-4 mt-4 pb-1 pt-1">
                 {/* Label on the left */}
                 <label className="text-xs font-medium w-16 flex items-center h-full">
                   <T en="Area" de="Gebiet" it="Area" fr="Zone" />
@@ -443,6 +444,72 @@ function Sidebar({
                   </div>
                 </div>
               </div>
+
+
+
+
+
+
+
+
+
+
+              {/* Two-option switcher */}
+              <div className="flex items-center gap-4 pb-2">
+                {/* Label on the left */}
+                <label className="text-xs font-medium w-16 flex items-center h-full">
+                  <T en="Filter" de="Filter" it="Filtro" fr="Filtre" />
+                </label>
+
+                {/* Buttons on the right */}
+                <div className="flex-1 flex justify-end">
+                  <div className="relative w-[373px] h-10 bg-muted rounded-full flex border border-border px-2">
+                    {/* Indicator */}
+                    <div
+                        className="absolute top-1.5 mt-[-1px] left-2 h-7 w-[178px] bg-foreground rounded-full shadow-lg transition-all duration-300"
+                        style={{
+                          transform: `translateX(${
+                              selectedOptionTwo === 'all' ? '0px' : '178px'
+                          })`,
+                        }}
+                    />
+
+                    {/* Button 1 - Show all */}
+                    <button
+                        onClick={() => {
+                          setSelectedOptionTwo('all');
+                          setShowOnlyEditorsChoice(false);
+                          onEditorsChoiceChange?.(false);
+                        }}
+                        className={`flex-none w-[178px] relative z-10 flex items-center justify-center font-medium text-sm transition-colors duration-200 ${
+                            selectedOptionTwo === 'all' ? 'text-background' : 'text-muted-foreground'
+                        }`}
+                    >
+                      <T en="Show all" de="Alle anzeigen" it="Mostra tutto" fr="Tout afficher" />
+                    </button>
+
+                    {/* Button 2 - Show Editor’s Choice */}
+                    <button
+                        onClick={() => {
+                          setSelectedOptionTwo('editorsChoice');
+                          setShowOnlyEditorsChoice(true);
+                          onEditorsChoiceChange?.(true);
+                        }}
+                        className={`flex-none w-[178px] relative z-10 flex items-center justify-center font-medium text-sm transition-colors duration-200 ${
+                            selectedOptionTwo === 'editorsChoice' ? 'text-background' : 'text-muted-foreground'
+                        }`}
+                    >
+                      <T
+                          en="Editor's Choice"
+                          de="Editor's Choice"
+                          it="Scelta dell'editore"
+                          fr="Choix de l'éditeur"
+                      />
+                    </button>
+                  </div>
+                </div>
+              </div>
+
 
 
 

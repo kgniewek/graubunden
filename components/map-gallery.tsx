@@ -66,7 +66,9 @@ export default function MapGallery({
   const [mapStyle, setMapStyle] = useState<string>(selectedMapStyle);
   const { theme, setTheme } = useTheme();
 
-
+  useEffect(() => {
+    setMapStyle(selectedMapStyle);
+  }, [selectedMapStyle]);
 
   const getActiveStyle = () => {
     if (mapStyle === 'simple') {
@@ -298,10 +300,10 @@ export default function MapGallery({
     }
   };
 
-  // Get attribution based on selected map style
   const getAttribution = () => {
-    switch (selectedMapStyle) {
-      case 'simple':
+    switch (mapStyle) {
+      case 'light-simple':
+      case 'dark-simple':
         return '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>';
       case 'satellite':
         return '&copy; <a href="https://www.esri.com/">Esri</a>';
@@ -315,6 +317,7 @@ export default function MapGallery({
         return '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>';
     }
   };
+
 
   const handleMarkerClick = (location: Location) => {
     onLocationSelect?.(location);
@@ -373,7 +376,7 @@ export default function MapGallery({
 
 
 
-      <div className="absolute bottom-6 right-6 z-[1000] flex items-end space-x-3">
+      <div className="absolute bottom-6 right-6 z-[1000] hidden md:flex items-end space-x-3">
         {/* Anchor wrapper: inline-flex ensures wrapper width matches button width */}
         <div className="relative inline-flex items-center justify-center">
           {/* Dropdown (kept mounted so close animation runs) */}

@@ -25,6 +25,11 @@ export function ClientLayout() {
   const [hoveredLocation, setHoveredLocation] = useState<Location | null>(null);
   const [isMobileSettingsOpen, setIsMobileSettingsOpen] = useState(false);
 
+
+
+
+    const [mapTheme, setMapTheme] = useState<'light' | 'dark'>('light'); // NEW
+
   const { theme, setTheme } = useTheme();
   const { language, setLanguage } = useLocale();
 
@@ -139,20 +144,23 @@ export function ClientLayout() {
           />
 
           <main className="flex-1 relative">
-            <MapGallery 
-              className="h-full w-full" 
-              onLocationSelect={handleLocationSelect}
-              selectedLocation={selectedLocation}
-              hoveredLocation={hoveredLocation}
-              isPanelOpen={isPanelOpen}
-              selectedMapStyle={selectedMapStyle}
-              showOnlyEditorsChoice={showOnlyEditorsChoice}
-              showOnlySwitzerland={showOnlySwitzerland}
-              showOnlyGraubunden={showOnlyGraubunden}
-              difficultyRange={difficultyRange}
-              heightRange={heightRange}
-              onVisibleLocationsChange={handleVisibleLocationsChange}
-            />
+              <MapGallery
+                  className="h-full w-full"
+                  onLocationSelect={handleLocationSelect}
+                  selectedLocation={selectedLocation}
+                  hoveredLocation={hoveredLocation}
+                  isPanelOpen={isPanelOpen}
+                  selectedMapStyle={selectedMapStyle}
+                  mapTheme={mapTheme}                   // NEW
+                  onMapStyleChange={setSelectedMapStyle} // NEW
+                  showOnlyEditorsChoice={showOnlyEditorsChoice}
+                  showOnlySwitzerland={showOnlySwitzerland}
+                  showOnlyGraubunden={showOnlyGraubunden}
+                  difficultyRange={difficultyRange}
+                  heightRange={heightRange}
+                  onVisibleLocationsChange={handleVisibleLocationsChange}
+              />
+
           </main>
         </div>
 
@@ -173,32 +181,38 @@ export function ClientLayout() {
 
 
 
-       <MobileSettingsModal
-        isOpen={isMobileSettingsOpen}
-        onClose={() => setIsMobileSettingsOpen(false)}
-        selectedMapStyle={selectedMapStyle}
-        onMapStyleChange={(id) => {
-          if (id === 'light-simple') {
-            setTheme('light');
-            setSelectedMapStyle('simple');
-          } else if (id === 'dark-simple') {
-            setTheme('dark');
-            setSelectedMapStyle('simple');
-          } else {
-            setSelectedMapStyle(id);
-          }
-        }}
-        showOnlyEditorsChoice={showOnlyEditorsChoice}
-        onEditorsChoiceChange={setShowOnlyEditorsChoice}
-        showOnlySwitzerland={showOnlySwitzerland}
-        onSwitzerlandChange={setShowOnlySwitzerland}
-        showOnlyGraubunden={showOnlyGraubunden}
-        onGraubundenChange={setShowOnlyGraubunden}
-        heightRange={heightRange}
-        onHeightRangeChange={setHeightRange}
-        difficultyRange={difficultyRange}
-        onDifficultyRangeChange={setDifficultyRange}
-      />
+        <MobileSettingsModal
+            isOpen={isMobileSettingsOpen}
+            onClose={() => setIsMobileSettingsOpen(false)}
+            selectedMapStyle={selectedMapStyle}
+            mapTheme={mapTheme}
+            onMapStyleChange={(id) => {
+                if (id === 'light-simple') {
+                    setTheme('light');                   // update next-themes
+                    setSelectedMapStyle('light-simple'); // ✅ keep full ID
+                } else if (id === 'dark-simple') {
+                    setTheme('dark');
+                    setSelectedMapStyle('dark-simple');  // ✅ keep full ID
+                } else {
+                    setSelectedMapStyle(id);             // satellite, terrain, street, swisstopo
+                }
+            }}
+            onMapThemeChange={(theme) => {
+                setMapTheme(theme);
+                setTheme(theme);
+            }}
+            showOnlyEditorsChoice={showOnlyEditorsChoice}
+            onEditorsChoiceChange={setShowOnlyEditorsChoice}
+            showOnlySwitzerland={showOnlySwitzerland}
+            onSwitzerlandChange={setShowOnlySwitzerland}
+            showOnlyGraubunden={showOnlyGraubunden}
+            onGraubundenChange={setShowOnlyGraubunden}
+            heightRange={heightRange}
+            onHeightRangeChange={setHeightRange}
+            difficultyRange={difficultyRange}
+            onDifficultyRangeChange={setDifficultyRange}
+        />
+
     </>
   );
 }
