@@ -79,7 +79,7 @@ export function ClientLayout() {
             alt={currentLanguage.name}
             className="w-[23px] h-auto rounded-sm object-contain"
           />
-          <span className="text-sm font-medium">{currentLanguage.name}</span>
+          <span className="hidden sm:block  text-sm font-medium">{currentLanguage.name}</span>
   <ChevronDown className="hidden sm:block h-4 w-4 -ml-1 transition-transform group-hover:rotate-180" />
         </Button>
 
