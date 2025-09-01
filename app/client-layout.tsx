@@ -71,7 +71,7 @@ export function ClientLayout() {
 </div>
 
     {/* Right: Language selector + Theme toggle */}
-    <div className="flex items-center space-x-[10px] pr-3">
+    <div className="flex items-center space-x-[10px] pr-3 sm:pr-0">
       <div className="relative group">
         <Button variant="ghost" className="h-9 px-2 sm:px-3 flex items-center space-x-2">
           <img
