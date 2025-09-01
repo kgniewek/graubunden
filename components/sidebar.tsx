@@ -250,7 +250,7 @@ function Sidebar({
       <div className="w-full h-px bg-border" />
     
       {/* Filters Section - Collapsible */}
-      <div className="px-6 py-3 space-y-3">
+      <div className="px-6 py-3 space-y-3  select-none ">
         <div className="space-y-3">
           <div className="flex items-center justify-between">
             <button
@@ -342,36 +342,7 @@ function Sidebar({
 
 
 
-
-{/*                <div className="flex items-center justify-between  mt-3">*/}
-{/*                  <span className="text-[13px] font-medium">*/}
-{/*<T*/}
-{/*  en="Show only Editor's Choice locations"*/}
-{/*  de="Nur Editor's Choice Standorte anzeigen"*/}
-{/*  it="Mostra solo le località scelte dall'editore"*/}
-{/*fr="Afficher seulement les choix de l'éditeur"*/}
-{/*  />*/}
-{/*                  </span>*/}
-{/*                  <Switch*/}
-{/*                    className="scale-75 -mr-[5px]"*/}
-{/*                    checked={showOnlyEditorsChoice}*/}
-{/*                    onCheckedChange={(checked) => {*/}
-{/*                      setShowOnlyEditorsChoice(checked);*/}
-{/*                      onEditorsChoiceChange?.(checked);*/}
-{/*                    }}*/}
-{/*                  />*/}
-{/*                </div>*/}
-
-
-
-
-
-
-
-
-
-
-              <div className="flex items-center gap-4 mt-4 pb-1 pt-1">
+              <div className="flex items-center gap-4 mt-4 pb-1 pt-1  select-none ">
                 {/* Label on the left */}
                 <label className="text-xs font-medium w-16 flex items-center h-full">
                   <T en="Area" de="Gebiet" it="Area" fr="Zone" />
