@@ -71,13 +71,13 @@ export function ClientLayout() {
 </div>
 
     {/* Right: Language selector + Theme toggle */}
-    <div className="flex items-center space-x-1">
+    <div className="flex items-center space-x-[6px] pr-2">
       <div className="relative group">
         <Button variant="ghost" className="h-8 px-3 flex items-center space-x-2">
           <img
             src={currentLanguage.flag}
             alt={currentLanguage.name}
-            className="w-[23px] h-auto rounded-sm object-contain"
+            className="w-[26px] sm:w-[23px] h-auto rounded-sm object-contain"
           />
           <span className="hidden sm:block  text-sm font-medium">{currentLanguage.name}</span>
   <ChevronDown className="hidden sm:block h-4 w-4 -ml-1 transition-transform group-hover:rotate-180" />
@@ -104,11 +104,11 @@ export function ClientLayout() {
       <Button
         variant="ghost"
         size="sm"
-        className="h-8 px-2"
+        className="h-9 w-9 px-2"
         onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
       >
-        <Sun className="h-[21px] w-[21px] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-        <Moon className="absolute h-[21px] w-[21px] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+        <Sun className="h-[24px] w-[24px] sm:h-[21px] sm:w-[21px] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+        <Moon className="absolute h-[24px] w-[24px] sm:h-[21px] sm:w-[21px]  rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
         <span className="sr-only">
           <T en="Toggle theme" de="Thema wechseln" it="Cambia tema" fr="Changer de thème" />
         </span>
@@ -116,10 +116,10 @@ export function ClientLayout() {
       <Button
                 variant="ghost"
                 size="sm"
-                className="h-8 px-2 md:hidden"
+                className="h-9 w-9 px-2 md:hidden "
                 onClick={() => setIsMobileSettingsOpen(true)}
               >
-                <Settings className="h-[21px] w-[21px]" />
+                <Settings className="h-[24px] w-[24px] sm:h-[21px] sm:w-[21px] " />
               </Button>
     </div>
   </div>

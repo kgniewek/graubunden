@@ -9,8 +9,8 @@ import { T, useLocale } from '@/app/locale-context';
 interface MobileSettingsModalProps {
     isOpen: boolean;
     onClose: () => void;
-    selectedMapStyle: string;           // matches MapGallery style
-    mapTheme: 'light' | 'dark';         // separate theme state
+    selectedMapStyle: string;
+    mapTheme: 'light' | 'dark';
     onMapStyleChange: (style: string) => void;
     onMapThemeChange: (theme: 'light' | 'dark') => void;
     showOnlyEditorsChoice: boolean;
