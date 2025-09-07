@@ -311,8 +311,9 @@ function Sidebar({
       </div>
     </div>
   </div>
+                  {/* Difficulty */}
 
-  {/* Difficulty */}
+ {/* 
   <div className="flex items-start gap-4">
     <label className="text-xs font-medium w-16">
               <T en="Difficulty" de="Grad" it="Difficoltà" fr="Difficulté" />
@@ -335,6 +336,8 @@ function Sidebar({
       </div>
     </div>
   </div>
+
+                 */}
 </div>
 
 
