@@ -1,7 +1,7 @@
 import React from 'react';
 import { Marker } from 'react-leaflet';
 import L from 'leaflet';
-import type { Location } from '@/types/location';
+import type { Location } from '@/public/location';
 import { useLocale, T } from '@/app/locale-context';
 
 interface ImageMarkerProps {
@@ -71,7 +71,7 @@ export function ImageMarker({ location, onMarkerClick, isActive = false, isHover
 ">
 
             <img 
-              src="${location.filename}" 
+              src="${location.imageMap}" 
               class="w-full h-full object-cover transition-all duration-300 ease-in-out"
               style="display: block;"
               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"

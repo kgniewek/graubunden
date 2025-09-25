@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowLeft, X, Copy, Check, Navigation, Maximize2, Map, Mountain, Activity, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import type { Location } from '@/types/location';
+import type { Location } from '@/public/location';
 import { useLocale, T } from '@/app/locale-context';
 import { cn } from '@/lib/utils';
 
@@ -149,7 +149,6 @@ function wgs84ToCH1903(lat: number, lng: number) {
 
   // Always render the panel, but show placeholder when no location
   const displayLocation = location || {
-    filename: '',
     location: '',
     province: '',
     country: '',
@@ -160,18 +159,47 @@ function wgs84ToCH1903(lat: number, lng: number) {
 
   return (
     <div className={cn(
-      "fixed top-[56px] sm:top-[49px] left-0 h-[calc(100vh-49px)] w-[500px] bg-background border-r z-50",
+      "fixed top-[56px] sm:top-[49px] left-0 h-[calc(100vh-49px)] w-[570px] bg-background border-r z-50",
       "transform transition-transform duration-300 ease-in-out",
       "flex flex-col",
       isOpen ? "translate-x-0" : "-translate-x-full"
     )}>
       {/* Content */}
       <div className="flex-1 overflow-y-auto">
-        {/* Image */}
-        <div className="w-full aspect-[4/3] bg-gray-100 dark:bg-gray-800 relative group">
+
+
+        {/* Half-height strip */}
+        <div className="w-full h-7 bg-background relative">
+          {/* The strip itself only affects height */}
+        </div>
+
+
+
+
+        {/*
+
+        <button
+            onClick={onClose}
+            className="absolute top-[16px] left-7 flex items-center text-black dark:text-white z-10"
+        >
+          <ArrowLeft className="h-[20px] w-[20px] mr-2" />
           {location && (
+              <span className="truncate max-w-[180px] text-[17px] font-medium">
+      {location.short || location.location}
+    </span>
+          )}
+        </button>
+ */}
+
+
+
+
+
+
+        {/* Image */}
+        <div className="w-full aspect-[4/3] bg-background relative group">
             <img
-              src={displayLocation.filename}
+              src={displayLocation.imageDetails}
               alt={displayLocation.location}
               className={`w-full h-full object-cover transition-opacity duration-200 ${isContentChanging ? 'opacity-0' : 'opacity-100'}`}
               onError={(e) => {
@@ -183,18 +211,23 @@ function wgs84ToCH1903(lat: number, lng: number) {
                 }
               }}
             />
-          )}
-          {!location && (
-            <div className="w-full h-full flex items-center justify-center text-4xl">📷</div>
-          )}
-          
-{/* Light mode button */}
+          <div className="absolute top-0 left-0 w-full h-10
+                bg-gradient-to-b
+                from-white dark:from-black/95
+                to-transparent
+                pointer-events-none">
+          </div>
+
+
+
+
+
 <button
   onClick={onClose}
   className={cn(
-    "absolute top-3 left-3 dark:hidden flex items-center space-x-1 pl-[8px] pr-[13px] py-[3px] rounded-2xl text-black",
-    "sm:pl-[8px] sm:pr-[13px] sm:py-[3px] sm:space-x-1 sm:text-[15px]", // desktop, stays the same
-    "max-sm:pl-3 max-sm:pr-3 max-sm:py-[6px] max-sm:space-x-2 max-sm:text-[18px]" // mobile overrides
+    "absolute -top-3.5 left-6 dark:hidden flex items-center space-x-1 pl-[8px] pr-[13px] py-[3px] rounded-2xl text-black",
+    "sm:pl-[12px] sm:pr-[17px] sm:py-[4px]  sm:space-x-2 sm:text-[15px]", // desktop, stays the same
+    ""
   )}
   style={{
     background: "rgba(255, 255, 255, 0.39)",
@@ -205,21 +238,20 @@ function wgs84ToCH1903(lat: number, lng: number) {
     border: "1px solid rgba(255, 255, 255, 0.06)"
   }}
 >
-  <ArrowLeft className="h-[18px] w-[18px] max-sm:h-6 max-sm:w-6" />
+  <ArrowLeft className="h-[20px] w-[20px]  mt-[-2px]" />
   {location && (
-    <span className="text-[15px] max-sm:text-[18px] font-medium truncate max-w-[150px]">
+    <span className="text-[17px] font-medium truncate max-w-[250px]">
       {location.short || location.location}
     </span>
   )}
 </button>
 
-{/* Dark mode button */}
 <button
   onClick={onClose}
   className={cn(
-    "absolute top-3 left-3 hidden dark:inline-flex items-center space-x-1 pl-[8px] pr-[13px] py-[3px] rounded-2xl text-white",
-    "sm:pl-[8px] sm:pr-[13px] sm:py-[3px] sm:space-x-1 sm:text-[15px]",
-    "max-sm:pl-3 max-sm:pr-3 max-sm:py-[6px] max-sm:space-x-2 max-sm:text-[18px]"
+    "absolute -top-3.5 left-6 hidden dark:inline-flex items-center space-x-1 pl-[8px] pr-[13px] py-[3px] rounded-2xl text-white",
+    "sm:pl-[12px] sm:pr-[17px] sm:py-[4px] sm:space-x-2 ",
+    ""
   )}
   style={{
     background: "rgba(0, 0, 0, 0.39)",
@@ -230,9 +262,9 @@ function wgs84ToCH1903(lat: number, lng: number) {
     border: "1px solid rgba(0, 0, 0, 0.06)"
   }}
 >
-  <ArrowLeft className="h-[18px] w-[18px] max-sm:h-6 max-sm:w-6" />
+  <ArrowLeft className="h-[20px] w-[20px]  mt-[-2px]" />
   {location && (
-    <span className="text-[15px] max-sm:text-[18px] font-medium truncate max-w-[150px]">
+    <span className="text-[17px] font-medium truncate max-w-[250px]">
       {location.short || location.location}
     </span>
   )}
@@ -240,11 +272,7 @@ function wgs84ToCH1903(lat: number, lng: number) {
 
 
 
-
-          
-          {/* Fullscreen Icon */}
-          {location && (
-<button
+          <button
   onClick={onFullscreenOpen}
   className="absolute bottom-2 left-2 flex items-center space-x-[6px] py-[5px] pl-[10px] pr-[8px] text-black dark:text-white  font-semibold rounded-full
              bg-transparent hover:bg-muted/60 transition-all duration-200 opacity-80 hover:opacity-100 group"
@@ -260,18 +288,43 @@ function wgs84ToCH1903(lat: number, lng: number) {
   </span>
 </button>
 
-          )}
         </div>
 
         {/* Details */}
-        <div className={`p-4 space-y-4 transition-opacity duration-200 ${isContentChanging ? 'opacity-0' : 'opacity-100'}`}>
+        <div className={`px-5 py-4 space-y-4 transition-opacity duration-200 ${isContentChanging ? 'opacity-0' : 'opacity-100'}`}>
+
+
+          {/* Image filename (from imageDetails path) */}
+          {displayLocation.imageDetails && (
+              <div className="px-5 pb-2 flex items-center justify-between text-xs text-muted-foreground">
+                <span className="truncate">{displayLocation.imageDetails.split('/').pop()}</span>
+                <button
+                    onClick={async () => {
+                      try {
+                        await navigator.clipboard.writeText(displayLocation.imageDetails.split('/').pop() || '');
+                      } catch (err) {
+                        console.error('Failed to copy image filename:', err);
+                      }
+                    }}
+                    className="ml-2 flex items-center space-x-1 px-2 py-0.5 rounded-md bg-muted hover:bg-muted/70"
+                >
+                  <Copy className="h-3 w-3" />
+                  <span>Copy</span>
+                </button>
+              </div>
+          )}
+
+
           {location && (
             <div>
               <div>
                 <h3 className="font-semibold text-lg mb-2">{displayLocation.location}</h3>
                 <p className="text-sm text-foreground">
-                  {displayLocation.province}, {displayLocation.country}
+                  {displayLocation.province
+                      ? `${displayLocation.province}, ${displayLocation.country}`
+                      : displayLocation.country}
                 </p>
+
               </div>
 
               <div className="space-y-2">
@@ -470,8 +523,8 @@ export function FullscreenModal({
         {/* Close button above image on the right */}
 <button
   onClick={onClose}
-  className="absolute -top-12 right-[1px] flex items-center space-x-1 pl-[16px] pr-[10px] py-[6px]  text-white font-semibold rounded-full transition-all
-             bg-transparent hover:bg-muted/80"
+  className="absolute -top-12 right-[1px] flex items-center space-x-1 pl-[16px] pr-[10px] py-[6px]  text-white  font-semibold rounded-full transition-all
+             bg-transparent hover:bg-black/80"
 >
   <span className="text-md">
     <T 

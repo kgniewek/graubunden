@@ -8,7 +8,7 @@ import { Separator } from '@/components/ui/separator';
 import { useLocale, T } from '@/app/locale-context';
 import { Switch } from '@/components/ui/switch';
 import { useTheme } from 'next-themes';
-import type { Location } from '@/types/location';
+import type { Location } from '@/public/location';
 
 interface SidebarProps {
   className?: string;
@@ -42,7 +42,17 @@ function Sidebar({
   const [selectedOptionTwo, setSelectedOptionTwo] = useState<'all' | 'editorsChoice'>('all');
 
 
+
+
+
+
   const [selectedOption, setSelectedOption] = useState<'all' | 'switzerland' | 'graubunden'>('all');
+
+
+
+
+
+
 
 
   const [selectedCountries, setSelectedCountries] = useState<string[]>([
@@ -166,6 +176,15 @@ function Sidebar({
   difficultyRange[1] !== 4;
 
 
+
+  const [itemsToShow, setItemsToShow] = useState(45);
+
+  const handleLoadMore = () => {
+    setItemsToShow((prev) => prev + 45);
+  };
+
+
+
   return (
     <div className={`relative flex flex-col border-r  bg-background ${className}`}>
 <div className=" sidebar-scroll flex-1 overflow-auto scrollbar-thin scrollbar-track-transparent scrollbar-thumb-black/40 hover:scrollbar-thumb-black/60 pt-3 pb-6">
@@ -186,49 +205,78 @@ function Sidebar({
             </div>
           
            <div className="flex-1 overflow-y-auto scrollbar-thin scrollbar-track-transparent scrollbar-thumb-black/40 hover:scrollbar-thumb-black/60">
-  <div className="grid grid-cols-2 gap-3">
-    {visibleLocations
-      .sort((a, b) => {
-        if (a.recommended && !b.recommended) return -1;
-        if (!a.recommended && b.recommended) return 1;
-        return 0;
-      })
-      .map((location, index) => (
-        <button
-          key={`${location.filename}-${index}`}
-          onClick={() => onLocationSelect?.(location)}
-          onMouseEnter={() => onLocationHover?.(location)}
-          onMouseLeave={() => onLocationHover?.(null)}
-          className="relative aspect-[4/3] rounded-lg overflow-hidden border border-border hover:border-primary/50 transition-all duration-200 group bg-muted"
-        >
-          <img
-            src={location.filename}
-            alt={location.short || location.location}
-            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-            onError={(e) => {
-              const target = e.target as HTMLImageElement;
-              target.style.display = 'none';
-              const parent = target.parentElement;
-              if (parent) {
-                const fallback = document.createElement('div');
-                fallback.className = 'w-full h-full flex items-center justify-center text-2xl bg-muted';
-                fallback.textContent = '📷';
-                parent.appendChild(fallback);
-              }
-            }}
-          />
+             <div
+                 className={`grid gap-3 ${
+                     visibleLocations.length >= 15 ? "grid-cols-3" : "grid-cols-2"
+                 }`}
+             >
+               {visibleLocations
+                   .sort((a, b) => {
+                     if (a.recommended && !b.recommended) return -1;
+                     if (!a.recommended && b.recommended) return 1;
+                     return 0;
+                   })
+                   .slice(0, itemsToShow) // 👈 only render itemsToShow
+                   .map((location, index) => (
+                       <button
+                           key={`${location.imageGrid}-${index}`}
+                           onClick={() => onLocationSelect?.(location)}
+                           onMouseEnter={() => onLocationHover?.(location)}
+                           onMouseLeave={() => onLocationHover?.(null)}
+                           className="relative aspect-[4/3] rounded-lg overflow-hidden border border-border hover:border-primary/50 transition-all duration-200 group bg-muted"
+                       >
+                         <img
+                             src={location.imageGrid}
+                             alt={location.short || location.location}
+                             className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                             loading="lazy" // 👈 native lazy loading
+                             onError={(e) => {
+                               const target = e.target as HTMLImageElement;
+                               target.style.display = "none";
+                               const parent = target.parentElement;
+                               if (parent) {
+                                 const fallback = document.createElement("div");
+                                 fallback.className =
+                                     "w-full h-full flex items-center justify-center text-2xl bg-muted";
+                                 fallback.textContent = "📷";
+                                 parent.appendChild(fallback);
+                               }
+                             }}
+                         />
 
-          {/* Gradient bottom label, left-aligned */}
-          <div className="absolute bottom-0 left-0 right-0 py-[3px] px-[5px] bg-gradient-to-t from-black/90 via-black/60 to-transparent">
-            <span className="text-xs font-medium text-white block truncate text-left">
-              {location.short || location.location}
-            </span>
-          </div>
-        </button>
-      ))}
-  </div>
+                         <div className="absolute bottom-0 left-0 right-0 py-[3px] px-[5px] bg-gradient-to-t from-black/90 via-black/60 to-transparent">
+          <span className="text-xs font-medium text-white block truncate text-left">
+            {location.short || location.location}
+          </span>
+                         </div>
+                       </button>
+                   ))}
+             </div>
 
-  {visibleLocations.length === 0 && (
+
+
+
+             {itemsToShow < visibleLocations.length && (
+                 <div className="flex justify-center mt-7 mb-2">
+                   <Button
+                       onClick={handleLoadMore}
+                       className="rounded-full bg-background border border-border border-[2px] hover:bg-muted text-foreground flex items-center gap-1.5  pl-5 pr-3.5 py-4"
+                   >
+                     <span>
+                       <T
+                         en="Load more locations"
+                         de="Mehr Standorte laden"
+                         it="Carica altre località"
+                         fr="Charger plus d'emplacements"
+                     />
+                     </span>
+                     <ChevronDown className="h-5 w-5" />
+                   </Button>
+                 </div>
+             )}
+
+
+             {visibleLocations.length === 0 && (
     <div className="flex flex-col items-center justify-center py-8 text-center">
       <MapIcon className="h-8 w-8 text-muted-foreground mb-2" />
       <p className="text-sm text-muted-foreground">
@@ -311,33 +359,6 @@ function Sidebar({
       </div>
     </div>
   </div>
-                  {/* Difficulty */}
-
- {/* 
-  <div className="flex items-start gap-4">
-    <label className="text-xs font-medium w-16">
-              <T en="Difficulty" de="Grad" it="Difficoltà" fr="Difficulté" />
-    </label>
-    <div className="flex-1">
-      <RangeSlider
-        min={0}
-        max={4}
-        step={1}
-        value={difficultyRange}
-        onValueChange={(value: [number, number]) => {
-          setDifficultyRange(value);
-          onDifficultyRangeChange?.(value);
-        }}
-        className="w-full"
-      />
-      <div className="flex justify-between text-[12px] text-muted-foreground mt-[5px]">
-        <span>{difficultyLabels[difficultyKeys[difficultyRange[0]]][language]}</span>
-        <span>{difficultyLabels[difficultyKeys[difficultyRange[1]]][language]}</span>
-      </div>
-    </div>
-  </div>
-
-                 */}
 </div>
 
 
@@ -353,17 +374,17 @@ function Sidebar({
 
                 {/* Buttons on the right */}
                 <div className="flex-1 flex justify-end">
-                  <div className="relative w-[373px] h-10 bg-muted rounded-full flex border border-border px-2">
+                  <div className="relative w-[433px] h-10 bg-muted rounded-full flex border border-border px-2">
                     {/* Indicator */}
                     <div
-                        className="absolute top-1.5 mt-[-1px] left-2 h-7 w-[116px] bg-foreground rounded-full shadow-lg transition-all duration-300"
+                        className="absolute top-1.5 mt-[-1px] left-2 h-7 w-[136px] bg-foreground rounded-full shadow-lg transition-all duration-300"
                         style={{
                           transform: `translateX(${
                               selectedOption === 'all'
                                   ? '0px'
                                   : selectedOption === 'switzerland'
-                                      ? '120px'
-                                      : '240px'
+                                      ? '140px'
+                                      : '280px'
                           })`,
                         }}
                     />
@@ -377,7 +398,7 @@ function Sidebar({
                           onSwitzerlandChange?.(false);
                           onGraubundenChange?.(false);
                         }}
-                        className={`flex-none w-[120px] relative z-10 flex items-center justify-center font-medium text-sm transition-colors duration-200 ${
+                        className={`flex-none w-[140px] relative z-10 flex items-center justify-center font-medium text-sm transition-colors duration-200 ${
                             selectedOption === 'all' ? 'text-background' : 'text-muted-foreground'
                         }`}
                     >
@@ -393,7 +414,7 @@ function Sidebar({
                           onSwitzerlandChange?.(true);
                           onGraubundenChange?.(false);
                         }}
-                        className={`flex-none w-[120px] relative z-10 flex items-center justify-center font-medium text-sm transition-colors duration-200 ${
+                        className={`flex-none w-[140px] relative z-10 flex items-center justify-center font-medium text-sm transition-colors duration-200 ${
                             selectedOption === 'switzerland' ? 'text-background' : 'text-muted-foreground'
                         }`}
                     >
@@ -409,7 +430,7 @@ function Sidebar({
                           onSwitzerlandChange?.(false);
                           onGraubundenChange?.(true);
                         }}
-                        className={`flex-none w-[120px] relative z-10 flex items-center justify-center font-medium text-sm transition-colors duration-200 ${
+                        className={`flex-none w-[140px] relative z-10 flex items-center justify-center font-medium text-sm transition-colors duration-200 ${
                             selectedOption === 'graubunden' ? 'text-background' : 'text-muted-foreground'
                         }`}
                     >
@@ -417,6 +438,7 @@ function Sidebar({
                     </button>
                   </div>
                 </div>
+
               </div>
 
 
@@ -437,13 +459,13 @@ function Sidebar({
 
                 {/* Buttons on the right */}
                 <div className="flex-1 flex justify-end">
-                  <div className="relative w-[373px] h-10 bg-muted rounded-full flex border border-border px-2">
+                  <div className="relative w-[433px] h-10 bg-muted rounded-full flex border border-border px-2">
                     {/* Indicator */}
                     <div
-                        className="absolute top-1.5 mt-[-1px] left-2 h-7 w-[178px] bg-foreground rounded-full shadow-lg transition-all duration-300"
+                        className="absolute top-1.5 mt-[-1px] left-2 h-7 w-[208px] bg-foreground rounded-full shadow-lg transition-all duration-300"
                         style={{
                           transform: `translateX(${
-                              selectedOptionTwo === 'all' ? '0px' : '178px'
+                              selectedOptionTwo === 'all' ? '0px' : '208px'
                           })`,
                         }}
                     />
@@ -455,8 +477,10 @@ function Sidebar({
                           setShowOnlyEditorsChoice(false);
                           onEditorsChoiceChange?.(false);
                         }}
-                        className={`flex-none w-[178px] relative z-10 flex items-center justify-center font-medium text-sm transition-colors duration-200 ${
-                            selectedOptionTwo === 'all' ? 'text-background' : 'text-muted-foreground'
+                        className={`flex-none w-[208px] relative z-10 flex items-center justify-center font-medium text-sm transition-colors duration-200 ${
+                            selectedOptionTwo === 'all'
+                                ? 'text-background'
+                                : 'text-muted-foreground'
                         }`}
                     >
                       <T en="Show all" de="Alle anzeigen" it="Mostra tutto" fr="Tout afficher" />
@@ -469,8 +493,10 @@ function Sidebar({
                           setShowOnlyEditorsChoice(true);
                           onEditorsChoiceChange?.(true);
                         }}
-                        className={`flex-none w-[178px] relative z-10 flex items-center justify-center font-medium text-sm transition-colors duration-200 ${
-                            selectedOptionTwo === 'editorsChoice' ? 'text-background' : 'text-muted-foreground'
+                        className={`flex-none w-[208px] relative z-10 flex items-center justify-center font-medium text-sm transition-colors duration-200 ${
+                            selectedOptionTwo === 'editorsChoice'
+                                ? 'text-background'
+                                : 'text-muted-foreground'
                         }`}
                     >
                       <T
@@ -482,6 +508,8 @@ function Sidebar({
                     </button>
                   </div>
                 </div>
+
+
               </div>
 
 

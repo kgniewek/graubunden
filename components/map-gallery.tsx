@@ -6,7 +6,7 @@ import { useTheme } from 'next-themes';
 import { Loader2, Plus, Minus, Layers, ChevronUp, Check  } from 'lucide-react';
 import * as Leaflet from 'leaflet';
 
-import type { Location } from '@/types/location';
+import type { Location } from '@/public/location';
 import { useLocale, T } from '@/app/locale-context';
 
 // Dynamically import map components to avoid SSR issues
@@ -187,7 +187,7 @@ export default function MapGallery({
   // Get locations that are actually visible in the current map viewport
   const visibleLocations = React.useMemo(() => {
     return filteredLocations.filter(location => 
-      visibleLocationIds.has(location.filename)
+      visibleLocationIds.has(location.imageMap)
     );
   }, [filteredLocations, visibleLocationIds]);
 
@@ -207,7 +207,7 @@ export default function MapGallery({
       const point = Leaflet.latLng(lat, lng);
       
       if (bounds.contains(point)) {
-        visible.add(location.filename);
+        visible.add(location.imageMap);
       }
     });
     
@@ -231,20 +231,16 @@ export default function MapGallery({
     mapInstance.on('zoomend', updateVisibleLocations);
     mapInstance.on('resize', updateVisibleLocations);
   }, [updateVisibleLocations]);
-
-  // Update parent component when visible locations change
   useEffect(() => {
     if (visibleLocations.length > 0) {
       console.log('Visible locations:', visibleLocations.length);
     }
     onVisibleLocationsChange?.(visibleLocations);
   }, [visibleLocations, onVisibleLocationsChange]);
-
   useEffect(() => {
-    // Load locations data
     const loadLocations = async () => {
       try {
-        const response = await fetch('/data/locations.json');
+        const response = await fetch('/data.json');
         const data = await response.json();
         setLocations(data);
       } catch (error) {
@@ -253,17 +249,11 @@ export default function MapGallery({
         setIsLoading(false);
       }
     };
-
     loadLocations();
   }, []);
-
-  // Force map refresh when theme changes
   useEffect(() => {
     if (theme) {
-      // Force re-render of map component
       setMapKey(prev => prev + 1);
-      
-      // Also directly update the map container background if map exists
       setTimeout(() => {
         const mapContainer = document.querySelector('.leaflet-container');
         if (mapContainer) {
@@ -278,7 +268,6 @@ export default function MapGallery({
       }, 100);
     }
   }, [theme]);
-
   const getTileLayerUrl = () => {
     switch (mapStyle) {
       case 'simple':
@@ -299,7 +288,6 @@ export default function MapGallery({
             : "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png";
     }
   };
-
   const getAttribution = () => {
     switch (mapStyle) {
       case 'light-simple':
@@ -317,12 +305,9 @@ export default function MapGallery({
         return '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>';
     }
   };
-
-
   const handleMarkerClick = (location: Location) => {
     onLocationSelect?.(location);
   };
-
   if (isLoading) {
     return (
       <div className={`flex items-center justify-center ${className}`}>
@@ -340,7 +325,6 @@ export default function MapGallery({
       </div>
     );
   }
-
   return (
     <div className={`relative ${className}`}>
      <MapContainer
@@ -352,34 +336,23 @@ export default function MapGallery({
   className={`z-0 leaflet-container ${theme === 'dark' ? 'map-bg-dark' : 'map-bg-light'}`}
        whenReady={handleMapReady}
 >
-
         <TileLayer
           attribution={getAttribution()}
           url={getTileLayerUrl()}
         />
-        
         {filteredLocations.map((location, index) => (
           <ImageMarker
             key={`${location.location}-${index}`}
             location={location}
             onMarkerClick={handleMarkerClick}
-            isActive={selectedLocation?.filename === location.filename}
-            isHovered={hoveredLocation?.filename === location.filename}
+            isActive={selectedLocation?.imageMap === location.imageMap}
+            isHovered={hoveredLocation?.imageMap === location.imageMap}
             isPanelOpen={isPanelOpen}
           />
         ))}
       </MapContainer>
-
-
-
-
-
-
-
       <div className="absolute  select-none  bottom-6 right-6 z-[1000] hidden md:flex items-end space-x-3">
-        {/* Anchor wrapper: inline-flex ensures wrapper width matches button width */}
         <div className="relative inline-flex items-center justify-center">
-          {/* Dropdown (kept mounted so close animation runs) */}
           <div
               className={
                 `absolute bottom-full mb-8 left-1/2 -translate-x-1/2

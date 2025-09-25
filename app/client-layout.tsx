@@ -5,7 +5,7 @@ import { Moon, Sun, ChevronDown, MapPin, Settings } from 'lucide-react';
 import Sidebar from '@/components/sidebar';
 import MapGallery from '@/components/map-gallery';
 import { ImagePanel, FullscreenModal } from '@/components/image-panel';
-import type { Location } from '@/types/location';
+import type { Location } from '@/public/location';
 import { useTheme } from 'next-themes';
 import { useLocale, T } from '@/app/locale-context';
 import { Button } from '@/components/ui/button';
@@ -67,12 +67,29 @@ export function ClientLayout() {
     <img src="/logo-light-text.svg" alt="Graubünden Gallery" className="h-[26px] w-auto flex-shrink-0 dark:hidden" />
     <img src="/logo-dark-text.svg" alt="Graubünden Gallery" className="h-[26px] w-auto flex-shrink-0 hidden dark:inline-block" />
   </a>
-  <span className="hidden sm:inline-block text-xs font-thin ml-4">by Krzysztof Gniewek</span>
 </div>
 
     {/* Right: Language selector + Theme toggle */}
-    <div className="flex items-center select-none space-x-[10px] pr-3 sm:pr-0">
-      <div className="relative group">
+    <div className="flex items-center select-none space-x-[10px] sm:space-x-[12px] pr-3 ">
+        <a
+            className=" items-center hidden sm:inline-block"
+            href="https://kgniewek.pics"
+            target="_blank"
+            rel="noopener noreferrer"
+        >
+            <Button
+                variant="ghost"
+                size="sm"
+                className="h-9 px-3"
+                onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
+            >
+                <img src="/kgpics-light.webp" alt="Graubünden Gallery" className="h-[22px] w-auto flex-shrink-0 dark:hidden" />
+                <img src="/kgpics-dark.webp" alt="Graubünden Gallery" className="h-[22px] w-auto flex-shrink-0 hidden dark:inline-block" />
+                <span className="pl-[6px]">kgniewek.pics</span>
+            </Button>
+        </a>
+
+        <div className="relative group">
         <Button variant="ghost" className="h-9 px-2 sm:px-3 flex items-center space-x-2">
           <img
             src={currentLanguage.flag}
@@ -104,7 +121,7 @@ export function ClientLayout() {
       <Button
         variant="ghost"
         size="sm"
-        className="h-9 w-9 px-2"
+        className="h-9 w-9 px-2 "
         onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
       >
         <Sun className="absolute h-[26px] w-[26px] sm:h-[21px] sm:w-[21px] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
@@ -113,14 +130,16 @@ export function ClientLayout() {
           <T en="Toggle theme" de="Thema wechseln" it="Cambia tema" fr="Changer de thème" />
         </span>
       </Button>
-      <Button
-                variant="ghost"
-                size="sm"
-                className="h-9 w-9 px-2 md:hidden  "
-                onClick={() => setIsMobileSettingsOpen(true)}
-              >
-                <Settings className="absolute h-[24px] w-[24px] scale-100 mt-[1px]" />
-              </Button>
+
+
+        <Button
+            variant="ghost"
+            size="sm"
+            className="h-9 w-9 px-2 md:hidden  "
+            onClick={() => setIsMobileSettingsOpen(true)}
+        >
+            <Settings className="absolute h-[24px] w-[24px] scale-100 mt-[1px]" />
+        </Button>
     </div>
   </div>
 </nav>
@@ -130,7 +149,7 @@ export function ClientLayout() {
         {/* Main content */}
         <div className="flex flex-1 overflow-hidden">
           <Sidebar 
-            className="w-[500px] hidden md:flex" 
+            className="w-[570px] hidden md:flex"
             selectedMapStyle={selectedMapStyle}
             onMapStyleChange={setSelectedMapStyle}
             onEditorsChoiceChange={setShowOnlyEditorsChoice}
@@ -174,7 +193,7 @@ export function ClientLayout() {
         <FullscreenModal
           isOpen={isFullscreenOpen}
           onClose={handleFullscreenClose}
-          imageSrc={selectedLocation?.filename || ''}
+          imageSrc={selectedLocation?.imageFull || ''}
           imageAlt={selectedLocation?.location || ''}
         />
       </div>
